@@ -32,6 +32,8 @@
 		4E059D9716514B9100A17E38 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4E059D9916514B9100A17E38 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4E059D9B16514B9100A17E38 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4E059DA316514C1300A17E38 /* GMHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMHelper.h; sourceTree = "<group>"; };
+		4E059DA416514C1300A17E38 /* GMHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GMHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		4E059D8B16514B9100A17E38 /* Name me I'm famous */ = {
 			isa = PBXGroup;
 			children = (
+				4E059DA216514BF000A17E38 /* Game Management */,
 				4E059D9416514B9100A17E38 /* nmifAppDelegate.h */,
 				4E059D9516514B9100A17E38 /* nmifAppDelegate.m */,
 				4E059D8C16514B9100A17E38 /* Supporting Files */,
@@ -97,6 +100,15 @@
 				4E059D9B16514B9100A17E38 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4E059DA216514BF000A17E38 /* Game Management */ = {
+			isa = PBXGroup;
+			children = (
+				4E059DA316514C1300A17E38 /* GMHelper.h */,
+				4E059DA416514C1300A17E38 /* GMHelper.m */,
+			);
+			name = "Game Management";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
