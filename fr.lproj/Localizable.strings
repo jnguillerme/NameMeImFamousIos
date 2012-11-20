@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Name me I'm famous
+
+  Created by Jino on 20/11/2012.
+  Copyright (c) 2012 nmif. All rights reserved.
+*/
+
+"ACCOUNT_CREATION" = "Creation du compte";
+"YES" = "yes";
+"NO" = "no";
+"IDONTKNOW" = "I don't know";
+"OPPONENTFOUND" = "Le joueur %@ a ete trouve";
+"WAITING_FOR_OPPONENT_CHOICE" = "attente du choix de %@ ...";
+"PICKUP_CELEBRITY_FAILED" = "Echec dans le choix de la celebrite";
+"YOUWON" = "Bravo, vous avez gagne !";
+"YOULOST" = "Desole ! Vous avez perdu...";
+"OPPONENT_DISCONNECTED" = "Votre adversaire a quitte la partie";

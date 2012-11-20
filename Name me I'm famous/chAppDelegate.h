@@ -1,15 +1,15 @@
 //
-//  nmifAppDelegate.h
-//  Name me I'm famous
+//  chAppDelegate.h
+//  CelebrityHead
 //
-//  Created by Jino on 12/11/2012.
-//  Copyright (c) 2012 nmif. All rights reserved.
+//  Created by Jean-Noel Guillerme on 26/06/2012.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "PAMHelper.h"
 
-@interface nmifAppDelegate : UIResponder <UIApplicationDelegate, PAMHelperDelegate>
+@interface chAppDelegate : UIResponder <UIApplicationDelegate, PAMHelperDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -20,4 +20,3 @@
 
 //- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
 @end
-

@@ -13,7 +13,7 @@
 
 @implementation GMHelper
 
-NSString * const K_NEW_RANDOM_GAME_URL = @"http://192.168.1.104:8081/newRandomGame";
+NSString * const K_NEW_RANDOM_GAME_URL = @"http://89.226.34.6:8081/newRandomGame";
 
 // commands received on the stream
 NSString * const K_NOTIFICATION_ON = @"notifymeon";
@@ -29,6 +29,7 @@ NSString * const K_ASK_QUESTION_ERROR = @"askquestionerror";
 NSString * const K_CELEBRITY_PICKUP_BY_OPPONENT = @"celebritypickupbyopponent";
 NSString * const K_QUESTION_ASKED = @"questionasked";
 NSString * const K_QUESTION_ANSWERED = @"questionanswered";
+NSString * const K_QUESTION_ANSWERED_ACK = @"questionansweredack";
 NSString * const K_SUBMIT_CELEBRITY = @"submitcelebrity";
 NSString * const K_CELEBRITY_SUBMITTED = @"celebritysubmitted";
 NSString * const K_CELEBRITY_SUBMITTED_BY_OPPONENT = @"celebritysubmittedbyopponent";
@@ -43,6 +44,17 @@ NSUInteger const K_STREAM_PARAM_IDX = 1;
 @synthesize delegate;
 @synthesize sessionID;
 @synthesize opponentName;
+@synthesize questionList = _questionList;
+
+-(NSMutableDictionary*)questionList {
+    if (!_questionList) {
+        _questionList = [[NSMutableDictionary alloc] init];
+    }
+    return _questionList;
+}
+-(void)setQuestionList:(NSArray *)ql {
+    _questionList = [ql copy];
+}
 
 static GMHelper * sharedHelper = 0;
 
@@ -56,7 +68,7 @@ static GMHelper * sharedHelper = 0;
 -(void) subscribeToNotifications {
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"192.168.1.104", 8083, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"89.226.34.6", 5001, &readStream, &writeStream);
     
     inputStream = (__bridge NSInputStream*)readStream;
     outputStream = (__bridge NSOutputStream*)writeStream;
@@ -162,6 +174,28 @@ static GMHelper * sharedHelper = 0;
     [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@", K_END_TURN, sessionID]];
 }
 
+-(void) gameOver
+{
+    [self resetQuestionList];
+    self.opponentName = @"";
+}
+-(void) addToQuestionList:(NSString*)questionID withQuestion:(NSString*)question
+{
+    [[self questionList] setValue:[[nmifQuestion alloc] initWithQuestionID:questionID andQuestion:question]  forKey:questionID];
+}
+
+-(void) updateQuestionListWithAnswer:(NSString*)questionID withAnswer:(NSString*)answer
+{
+    nmifQuestion* question = [[self questionList] objectForKey:questionID];
+    question.answer = answer;
+
+    [ [self questionList] setValue:question forKey:questionID];
+}
+
+-(void) resetQuestionList
+{
+    [ [self questionList] removeAllObjects];    
+}
 #pragma mark - NSStreamDelegate
 -(void) stream:(NSStream *)theStream handleEvent:(NSStreamEvent)eventCode 
 {
@@ -190,9 +224,11 @@ static GMHelper * sharedHelper = 0;
                                 if ([outputToken count] >= 2) {
                                     NSString* param2 = nil;
                                     if ([outputToken count] >= 3) {
-                                        param2 = [outputToken objectAtIndex:K_STREAM_PARAM_IDX+1];
+                                        param2 = [[outputToken objectAtIndex:K_STREAM_PARAM_IDX+1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                                     }
-                                    [self decodeCommand:[outputToken objectAtIndex:K_STREAM_COMMAND_IDX] withParam1:[outputToken objectAtIndex:K_STREAM_PARAM_IDX] withParam2:param2];
+                                    [self decodeCommand:[[outputToken objectAtIndex:K_STREAM_COMMAND_IDX] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                                             withParam1:[[outputToken objectAtIndex:K_STREAM_PARAM_IDX] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                                             withParam2:param2];
                                 }
                             }
                         }
@@ -228,13 +264,17 @@ static GMHelper * sharedHelper = 0;
     } else if ([command compare:K_CELEBRITY_PICKUP_BY_OPPONENT] == NSOrderedSame) {
         [delegate onCelebrityPickedUpByOpponent:param1];
     } else if ([command compare:K_ASK_QUESTION_ACK] == NSOrderedSame) {
+        [self addToQuestionList:param1 withQuestion:param2];
         [delegate onAskQuestionSuccess:[param1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     } else if ([command compare:K_ASK_QUESTION_ERROR] == NSOrderedSame) {
         [delegate onAskQuestionError:param1];
     } else if ([command compare:K_QUESTION_ASKED] == NSOrderedSame) {
         [delegate onQuestionAsked:param1 withQuestion:param2];
     } else if ([command compare:K_QUESTION_ANSWERED] == NSOrderedSame) {
+        [self updateQuestionListWithAnswer:param1 withAnswer:param2];
         [delegate onQuestionAnswered:[param1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] withAnswer:param2];                                
+    } else if ([command compare:K_QUESTION_ANSWERED_ACK] == NSOrderedSame) {
+        [delegate onQuestionAnsweredAck];
     } else if ([command compare:K_CELEBRITY_SUBMITTED] == NSOrderedSame) {
         [delegate onCelebritySubmitted:param1 withStatus:param2];
     } else if ([command compare:K_CELEBRITY_SUBMITTED_BY_OPPONENT] == NSOrderedSame) {
@@ -246,10 +286,15 @@ static GMHelper * sharedHelper = 0;
             [delegate onNewTurn:YES];        
         }
     }else if ([command compare:K_GAME_OVER] == NSOrderedSame) {
+        [self gameOver];
         if ([param1 compare:@"youwon"] == NSOrderedSame) { 
             [delegate onGameOver:YES];
-        } else {
+        } else if ([param1 compare:@"youlost"] == NSOrderedSame) {
             [delegate onGameOver:NO];                                    
+        } else {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"GAME_OVER", nil) message:NSLocalizedString(@"OPPONENT_DISCONNECTED", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [delegate onOpponentDisconnected];
         }
     }
 }
