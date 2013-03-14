@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "GMHelper.h"
+#import "nmifCelebrityListViewController.h"
+#import "nmifMenuCelebrityChoiceTableView.h"
 
-@interface chCelebrityChoiceViewController : UIViewController<GMHelperDelegate>
+@interface chCelebrityChoiceViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifCelebrityChoiceDelegate, nmifMenuCelebrityChoiceTableViewDelegate> {
+    nmifMenuCelebrityChoiceTableView *menuTableView;
+}
+
 @property (weak, nonatomic) IBOutlet UILabel *lblOpponentFound;
 
 @property (weak, nonatomic) IBOutlet UITextField *lblCelebrityName;
-@property (strong, nonatomic) NSString *opponentName;
-@property BOOL celebrityPickedUpByMe;
-@property BOOL celebrityPickedUpByOpponent;
+@property (weak, nonatomic) IBOutlet UILabel *lblOpponentStatus;
+
+@property (weak, nonatomic) IBOutlet UITableView *tvMenu;
+@property (weak, nonatomic) IBOutlet UIButton *btnParam;
+
 @end

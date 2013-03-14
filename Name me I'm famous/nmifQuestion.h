@@ -17,5 +17,6 @@
 -(nmifQuestion*)initWithQuestionID:(NSString*)questionID andQuestion:(NSString*)question;
 -(nmifQuestion*)initWithQuestion:(NSString*)question;
 -(nmifQuestion*)initWithQuestion:(NSString*)question andAnswer:(NSString*)answer;
+-(nmifQuestion*)initWithQuestionID:(NSString*)questionID andQuestion:(NSString*)question andAnswer:(NSString*)answer;
 
 @end

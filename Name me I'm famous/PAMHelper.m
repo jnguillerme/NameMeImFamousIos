@@ -17,9 +17,12 @@
 NSString * const K_LOGIN_KEY = @"KompLoginKey";
 NSString * const K_PASSWORD_KEY = @"KompPasswordKey";
 
+//89.226.34.6
+
 NSString * const K_CREATE_PLAYER_ACCOUNT_URL = @"http://89.226.34.6:8081/createPlayerAccount";
 NSString * const K_LOGIN_PLAYER_ACCOUNT_URL  = @"http://89.226.34.6:8081/loginPlayerAccount";
 NSString * const K_LOGOUT_PLAYER_ACCOUNT_URL  = @"http://89.226.34.6:8081/logoutPlayerAccount";
+NSString * const K_FORGOT_PASSWORD_URL = @"http://89.226.34.6/forgotPassword";
 NSString * const K_PING_PLAYER_ACCOUNT_URL  = @"http://89.226.34.6:8081/pingPlayerAccount";
 
 @synthesize delegate;
@@ -34,8 +37,20 @@ static PAMHelper * sharedHelper = 0;
     return sharedHelper;
 }
 
+-(id) init {
+    self = [super init];
+    if (self) {
+        sessionID = nil;
+        fConnectionInProgress = false;
+    }
+    return self;
+}
+
 #pragma mark - xmlHttpRequest send
 
+-(BOOL) isConnected {
+    return (fConnectionInProgress || sessionID != nil);
+}
 - (void) createAccount:(NSString*)login withPassword:(NSString*)password withFullName:(NSString*)fullName withEMail:(NSString*)email withDelegate:(id <PAMHelperDelegate>)PAMDelegate
 {
     NSURL *url = [NSURL URLWithString:K_CREATE_PLAYER_ACCOUNT_URL];
@@ -51,17 +66,24 @@ static PAMHelper * sharedHelper = 0;
     [request startAsynchronous];
 }
 
-- (void) loginAccount:(NSString*)login withPassword:(NSString*)password withDelegate:(id <PAMHelperDelegate>)PAMDelegate
+
+- (void) loginAccount:(NSString*)login withPassword:(NSString*)password andAccountType:(NSString*)accountType withDelegate:(id <PAMHelperDelegate>)PAMDelegate
 {
-    NSURL *url = [NSURL URLWithString:K_LOGIN_PLAYER_ACCOUNT_URL];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:login  forKey:@"login"];
-    [request setPostValue:password  forKey:@"password"];
-
-    self.delegate = PAMDelegate;
-
-    [request setDelegate:self];
-    [request startAsynchronous];    
+    if (!self.isConnected) {
+        NSURL *url = [NSURL URLWithString:K_LOGIN_PLAYER_ACCOUNT_URL];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:login  forKey:@"login"];
+        [request setPostValue:password  forKey:@"password"];
+        [request setPostValue:accountType  forKey:@"accountType"];
+    
+        self.accountType = accountType;
+        self.delegate = PAMDelegate;
+        
+        [request setDelegate:self];
+        
+        fConnectionInProgress = true;
+        [request startAsynchronous];
+    }
 }
 
 - (void) logoutAccount:(id <PAMHelperDelegate>)PAMDelegate
@@ -74,6 +96,18 @@ static PAMHelper * sharedHelper = 0;
     
     [request setDelegate:self];
     [request startAsynchronous];     
+}
+
+- (void) forgotPassword:(NSString*)login withDelegate:(id <PAMHelperDelegate>)myDelegate
+{
+    NSURL *url = [NSURL URLWithString:K_FORGOT_PASSWORD_URL];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:login  forKey:@"login"];
+
+    self.delegate = myDelegate;
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
 - (void) ping
@@ -105,18 +139,25 @@ static PAMHelper * sharedHelper = 0;
             [delegate onAccountCreationSuccess];
         } else if ([url compare:K_LOGIN_PLAYER_ACCOUNT_URL] == NSOrderedSame) {
             // update session IDs
+            fConnectionInProgress = false;
             [self setSessionID:[responseDict objectForKey:@"ID"]];
             [[GMHelper sharedInstance] setSessionID:[responseDict objectForKey:@"ID"]];
             
             // subscribe to notifications
-            [[GMHelper sharedInstance] subscribeToNotifications];
+            [[GMHelper sharedInstance] subscribeToNotifications:(id<GMHelperDelegate>)delegate];
             
             // start ping
-            [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(ping) userInfo:nil repeats:YES];
+      //      [NSTimer scheduledTimerWithTimeInterval:100 target:self selector:@selector(ping) userInfo:nil repeats:YES];
             // notify delegate
             [delegate onLoginSuccess];                        
         } else if ([url compare:K_LOGOUT_PLAYER_ACCOUNT_URL] == NSOrderedSame) {
+            // unsubscribe from notification
+            [[GMHelper sharedInstance] unsubscribeFromNotifications];
+            sessionID = nil;
+            [[GMHelper sharedInstance] setSessionID:nil];
             [delegate onLogoutSuccess];            
+        } else if ([url compare:K_FORGOT_PASSWORD_URL] == NSOrderedSame) {
+            [delegate onPasswordReset:[responseDict objectForKey:@"email"]];
         }
     }
 }
@@ -128,14 +169,20 @@ static PAMHelper * sharedHelper = 0;
     [self notifyDelegateOfRequestError:[error localizedDescription] withUrl:url];
 }
 
+-(NSString*) decodeLoginError:(NSString*)error {
+    NSString * errorMessage =  [NSString stringWithFormat:@"LOGIN_FAILED_%@", error];
+    return NSLocalizedString(errorMessage, nil);
+}
 -(void) notifyDelegateOfRequestError:(NSString *)error withUrl:(NSString *)url 
 {
     if ([url compare:K_CREATE_PLAYER_ACCOUNT_URL] == NSOrderedSame) {           // account successfully created        
         [delegate onAccountCreationFailed:error];
     } else if ([url compare:K_LOGIN_PLAYER_ACCOUNT_URL] == NSOrderedSame) {
-        [delegate onLoginFailed:error];            
+        [delegate onLoginFailed:[self  decodeLoginError:error]];
     } else if ([url compare:K_LOGOUT_PLAYER_ACCOUNT_URL] == NSOrderedSame) {
         [delegate onLogoutFailed:error];            
+    } else if ([url compare:K_FORGOT_PASSWORD_URL] == NSOrderedSame) {
+        [delegate onPasswordResetFailed:error];
     }
 }
 #pragma mark - local data storage management
@@ -156,7 +203,7 @@ static PAMHelper * sharedHelper = 0;
 - (void) authenticateLocalUser:(id <PAMHelperDelegate>)PAMDelegate
 {
     NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [self loginAccount:[standardUserDefaults objectForKey:K_LOGIN_KEY] withPassword:[standardUserDefaults objectForKey:K_PASSWORD_KEY] withDelegate:PAMDelegate];   
+    [self loginAccount:[standardUserDefaults objectForKey:K_LOGIN_KEY] withPassword:[standardUserDefaults objectForKey:K_PASSWORD_KEY] andAccountType:@"internal" withDelegate:PAMDelegate];
 }
 
 -(void) clearCredentials
@@ -166,6 +213,5 @@ static PAMHelper * sharedHelper = 0;
     [standardUserDefaults removeObjectForKey:K_PASSWORD_KEY];
     [standardUserDefaults synchronize];
 }
-
 
 @end

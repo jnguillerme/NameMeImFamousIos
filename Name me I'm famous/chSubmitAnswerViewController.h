@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "GMHelper.h"
+#import "nmifCelebrityListViewController.h"
+#import "nmifMenuSubmitCelebrityTableView.h"
 
-@interface chSubmitAnswerViewController : UIViewController<GMHelperDelegate>
+@interface chSubmitAnswerViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifCelebrityChoiceDelegate, nmifMenuCelebritySubmitTableViewDelegate> {
+    BOOL IWon;
+    NSString* celebrityToFind;
+    nmifMenuSubmitCelebrityTableView *menuTableView;
+};
+
 @property (weak, nonatomic) IBOutlet UITextField *tfCelebrity;
-@property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 
-@property BOOL IWon;
+@property (weak, nonatomic) IBOutlet UILabel *lblOpponentStatus;
+@property (weak, nonatomic) IBOutlet UITableView *tvMenu;
 
 @end

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GMHelper.h"
+#import "PAMHelper.h"
 
-@interface chNewGameViewController : UIViewController<GMHelperDelegate>
+@interface chNewGameViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, GMHelperDelegate, PAMHelperDelegate>
 
-@property (weak,nonatomic) NSString* opponentName;
+@property (weak, nonatomic) IBOutlet UITableView *tvMenu;
+@property (nonatomic, retain) NSArray *menu;
 @end

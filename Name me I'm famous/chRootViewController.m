@@ -30,9 +30,7 @@
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Untitled.png@"]]]; 
     	
 	// Do any additional setup after loading the view.
-   if ([[PAMHelper sharedInstance] hasStoredCredentials]) {        
-        [[PAMHelper sharedInstance] authenticateLocalUser:self];
-    } else {
+   if (![[PAMHelper sharedInstance] hasStoredCredentials]) {
         [self performSegueWithIdentifier:@"newAccountFromRoot" sender:self];
     }
 }
@@ -48,23 +46,5 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"newGameFromRoot"]) {
-        if ([segue.destinationViewController isKindOfClass:[chNewGameViewController class]] == YES) {
-        }
-   }
-}
-#pragma PAMHelperDelegate
 
-- (void)onLoginSuccess
-{
-    // RESUME GAME IN PROGRESS
-   [self performSegueWithIdentifier:@"newGameFromRoot" sender:self];
-}
-
-- (void)onLoginFailed:(NSString*)error
-{
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login failed" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
 @end

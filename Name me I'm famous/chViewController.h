@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "nmifAppDelegate.h"
+#import "nmifMenuNewGameTableView.h"
+#import "GMHelper.h"
 
-@interface chViewController : UIViewController
+@interface chViewController : UIViewController<FBAppDelegate, PAMHelperDelegate, GMHelperDelegate, nmifMenuNewGameTableViewDelegate> {
+    nmifMenuTableView *menuTableView;
+}
 
+@property (weak, nonatomic) IBOutlet UITableView *tvMenu;
 @end

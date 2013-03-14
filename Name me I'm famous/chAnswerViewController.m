@@ -27,7 +27,7 @@
     }
     return self;
 }
-
+ 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -73,8 +73,7 @@
         
         [qavc setQuestion:question];
         [[nmifCelebrity sharedInstance] addQuestion:question];
-        
-        
+                
     }
     
 }

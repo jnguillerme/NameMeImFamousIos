@@ -8,7 +8,7 @@
 
 #import "chViewControllerQuestionsHistory.h"
 #import "GMHelper.h"
-
+#import "nmifBackgroundLayer.h"
 @interface chViewControllerQuestionsHistory ()
 
 @end
@@ -30,11 +30,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    [[self  navigationController] setNavigationBarHidden:NO animated:YES];
+
+    CAGradientLayer *bgLayer = [nmifBackgroundLayer blueGradient];
+    bgLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:bgLayer atIndex:0];
+
     self.tvQuestions.delegate = self;
     self.tvQuestions.dataSource = self;
     
-    self.questionList = [[[GMHelper sharedInstance] questionList] allValues];
+    self.questionList = [[[GMHelper sharedInstance] questions] allValues];
     
     [self.tvQuestions reloadData];
 }
@@ -44,6 +49,8 @@
     [self setTvQuestions:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    [[self  navigationController] setNavigationBarHidden:YES animated:YES];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -54,7 +61,7 @@
 
 #pragma mark delegate UITableViewDataSource
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[GMHelper sharedInstance] questionList] count];
+    return [[[GMHelper sharedInstance] questions] count];
 }
 
 -(UITableViewCell*)tableView:(UITableView*)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -65,8 +72,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
-    if ([[[GMHelper sharedInstance] questionList] count] == 0) {
-        cell.textLabel.text = @"(no question found)";
+    if ([[[GMHelper sharedInstance] questions] count] == 0) {
+        cell.textLabel.text = NSLocalizedString(@"NO_QUESTION_FOUND_FOR_CELL", nil);
     } else {
         nmifQuestion * questionDetails = [self.questionList objectAtIndex:indexPath.row];
         cell.textLabel.text = [questionDetails question];
@@ -82,8 +89,9 @@
 }
 
 -(void) onOpponentDisconnected {
-    [[self navigationController] popToRootViewControllerAnimated:TRUE];
+//    [[self navigationController] popToRootViewControllerAnimated:TRUE];
 }
 
-
+-(void) onOpponentStatusUpdated {
+}
 @end

@@ -22,6 +22,13 @@
     return self;
 }
 
+-(nmifQuestion*)initWithQuestionID:(NSString*)questionID andQuestion:(NSString*)question andAnswer:(NSString*)answer
+{
+    self.questionID = questionID;
+    self.question = question;
+    self.answer = answer;
+    return self;
+}
 -(nmifQuestion*)initWithQuestion:(NSString*)question {
     self.question = question;
     self.answer = @"";

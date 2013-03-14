@@ -8,16 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "PAMHelper.h"
+#import "GMHelper.h"
 
-@interface nmifAppDelegate : UIResponder <UIApplicationDelegate, PAMHelperDelegate>
+@protocol FBAppDelegate
+- (void)facebookDidLogin:(NSString*)userName;
+@end
 
+@interface nmifAppDelegate : UIResponder <UIApplicationDelegate, PAMHelperDelegate, GMHelperDelegate> {
+    id <FBAppDelegate> fbDelegate;
+}
 @property (strong, nonatomic) UIWindow *window;
 
-
-
 /// Facebook support
-//extern NSString *const FBSessionStateChangedNotification;
+extern NSString *const FBSessionStateChangedNotification;
+- (BOOL)openFBSessionWithAllowLoginUI:(BOOL)allowLoginUI withDelegate:(id<FBAppDelegate>)delegate;
+- (void)closeFBSession;
 
-//- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
 @end
 
