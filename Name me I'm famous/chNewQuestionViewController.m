@@ -70,7 +70,7 @@ NSString * const K_QUESTION_ID_KEY = @"NMIF.ASKQUESTIONVIEWID.QUESTIONID";
 - (void) viewWillAppear:(BOOL)animated
 {
     [[self  navigationController] setNavigationBarHidden:YES animated:YES];
-    self.lblQuestion.text = self.questionLabel;
+    self.lblQuestion.text = self.questionLabel;    
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
     
     if (questionAsked != nil) {
@@ -114,6 +114,9 @@ NSString * const K_QUESTION_ID_KEY = @"NMIF.ASKQUESTIONVIEWID.QUESTIONID";
 
     [self.textFieldQuestion resignFirstResponder];
 }*/
+- (IBAction)onQuestionAskedHistoryPressed:(id)sender {
+    [self performSegueWithIdentifier:@"questionAskedHistory" sender:self];
+}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // clear local store for the view
@@ -122,12 +125,11 @@ NSString * const K_QUESTION_ID_KEY = @"NMIF.ASKQUESTIONVIEWID.QUESTIONID";
     [[GMHelper sharedInstance] clearLocalDataForKey:K_QUESTION_ID_KEY];
  
     if ([segue.identifier isEqualToString:@"displayAnswer"]) {
-
         if ([segue.destinationViewController isKindOfClass:[chQuestionAnswerViewController class]] == YES) {
             chQuestionAnswerViewController* avc = segue.destinationViewController; 
             [avc setQuestion:self.question];
         }
-    }
+    } 
 }
 - (IBAction)onEditQuestionBegin:(id)sender {
     [[GMHelper sharedInstance] startTyping];
@@ -140,16 +142,21 @@ NSString * const K_QUESTION_ID_KEY = @"NMIF.ASKQUESTIONVIEWID.QUESTIONID";
 }
 #pragma nmifMenuAskQuestionTableViewDelegate
 - (void)onAsk {
-    [self.view endEditing:YES];
+    if (self.textFieldQuestion.text.length > 0 ) {
+        [self.view endEditing:YES];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = [NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_OPPONENT_REPLY",nil), [[GMHelper sharedInstance] opponentName]];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = [NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_OPPONENT_REPLY",nil), [[GMHelper sharedInstance] opponentName]];
     
-    self.question = [[nmifQuestion alloc] initWithQuestion:self.textFieldQuestion.text];
-    [[GMHelper sharedInstance] askQuestion:self.textFieldQuestion.text withDelegate:self];
+        self.question = [[nmifQuestion alloc] initWithQuestion:self.textFieldQuestion.text];
+        [[GMHelper sharedInstance] askQuestion:self.textFieldQuestion.text withDelegate:self];
     
-    // store the fact that the question has been asked
-    [[GMHelper sharedInstance] storeLocalData:@"1" forKey:K_QUESTION_ASKED_KEY];
+        // store the fact that the question has been asked
+        [[GMHelper sharedInstance] storeLocalData:@"1" forKey:K_QUESTION_ASKED_KEY];
+        // store the question in question history
+        [[GMHelper sharedInstance] addQuestionToHistory:self.textFieldQuestion.text];
+
+    }
 }
 -(void) onShowQuestionHistory
 {
@@ -188,6 +195,19 @@ NSString * const K_QUESTION_ID_KEY = @"NMIF.ASKQUESTIONVIEWID.QUESTIONID";
 }
 -(void) onOpponentStatusUpdated {
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
+}
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
+    [self.navigationController pushViewController:VC animated:YES];
+}
+#pragma nmifQuestionChoiceDelegate
+-(void) setQuestionAsked:(NSString *)question
+{
+    if (questionAsked == nil)  {
+        questionAsked = [[NSString alloc] initWithString:question];
+    } else {
+        questionAsked = question;
+    }
 }
 
 #pragma GMRestoreViewDelegate

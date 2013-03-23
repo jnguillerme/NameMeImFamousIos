@@ -12,9 +12,10 @@
 @interface nmifCelebrity : NSObject
 
 @property (strong, nonatomic) NSString *celebrityName;
+@property (strong, nonatomic) NSString *celebrityRole;
 @property (strong, nonatomic) NSMutableArray* questions;
 
 +(nmifCelebrity*)sharedInstance;
 -(void) addQuestion:(nmifQuestion*)withQuestion;
-
+-(id) initWithName:(NSString*)name andRole:(NSString*)role;
 @end

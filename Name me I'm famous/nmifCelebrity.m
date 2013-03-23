@@ -32,6 +32,14 @@ static nmifCelebrity* sharedCelebrity = 0;
     return sharedCelebrity;
 }
 
+-(id) initWithName:(NSString*)name andRole:(NSString*)role
+{
+    [self setCelebrityName:name];
+    [self setCelebrityRole:role];
+    
+    return self;
+}
+
 -(void) addQuestion:(nmifQuestion*)withQuestion {
     [self.questions addObject:withQuestion];
 }

@@ -22,6 +22,18 @@
     [parametersDelegate onGameInProgress];
 }
 
+-(void) onGameHistory
+{
+    id <nmifMenuParametersTableViewDelegate> parametersDelegate = (id<nmifMenuParametersTableViewDelegate>)delegate;
+    [parametersDelegate onGameHistory];
+}
+
+-(void) onTopCelebrities
+{
+    id <nmifMenuParametersTableViewDelegate> parametersDelegate = (id<nmifMenuParametersTableViewDelegate>)delegate;
+    [parametersDelegate onTopCelebrities];
+}
+
 -(void)onGiveUpGame
 {
     id <nmifMenuParametersTableViewDelegate> parametersDelegate = (id<nmifMenuParametersTableViewDelegate>)delegate;

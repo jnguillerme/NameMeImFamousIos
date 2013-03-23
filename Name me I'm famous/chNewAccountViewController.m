@@ -76,7 +76,7 @@
 }
 
 #pragma nmifMenuNewPlayerTableView 
-- (void)onNewPLayer
+- (void)onNewPlayer
 {
     
     // Start Request
@@ -116,7 +116,7 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
     // go to new game screen
-    [self performSegueWithIdentifier:@"gameInProgress" sender:self];
+    [self performSegueWithIdentifier:@"gameInProgressFromNewPlayer" sender:self];
 }
 
 - (void)onLogoutSuccess

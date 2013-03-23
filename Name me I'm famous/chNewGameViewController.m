@@ -167,4 +167,8 @@
 -(void) onOpponentStatusUpdated {
     
 }
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
+    [self.navigationController pushViewController:VC animated:YES];
+}
 @end

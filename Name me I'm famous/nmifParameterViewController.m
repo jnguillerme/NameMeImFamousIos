@@ -40,7 +40,10 @@
     self.tvMenu.dataSource = menuTableView;
     
     [menuTableView addMenuItem:NSLocalizedString(@"PACKAGES", nil) withDescription:NSLocalizedString(@"PACKAGES_DESCRIPTION", nil) andImage:@"packages.png" andAction:@selector(onPackageManagement) andDelegate:theDelegate];
-    [menuTableView addMenuItem:NSLocalizedString(@"GAMEINPROGRESS", nil) withDescription:NSLocalizedString(@"GAMEINPROGRESS_DESCRIPTION", nil) andImage:@"gameinprogress.png" andAction:@selector(onGameInProgress) andDelegate:theDelegate];
+    [menuTableView addMenuItem:NSLocalizedString(@"GAMEINPROGRESS", nil) withDescription:NSLocalizedString(@"GAMEINPROGRESS_DESCRIPTION", nil) andImage:@"gameinprogress.png" andAction:@selector(onGameInProgress) andDelegate:theDelegate];    
+    [menuTableView addMenuItem:NSLocalizedString(@"MY_GAMES", nil) withDescription:NSLocalizedString(@"MY_GAMES_DESCRIPTION", nil) andImage:@"mygameshistory.png" andAction:@selector(onGameHistory) andDelegate:theDelegate];
+    [menuTableView addMenuItem:NSLocalizedString(@"TOP_CELEBRITIES", nil) withDescription:NSLocalizedString(@"TOP_CELEBRITIES_DESCRIPTION", nil) andImage:@"topcelebrities.png" andAction:@selector(onTopCelebrities) andDelegate:theDelegate];
+    
     if ([[GMHelper sharedInstance] activeGameID] != nil) {
         [menuTableView addMenuItem:NSLocalizedString(@"GIVEUPGAME", nil) withDescription:NSLocalizedString(@"GIVEUPGAME_DESCRIPTION", nil) andImage:@"quitGame2.png" andAction:@selector(onGiveUpGame) andDelegate:theDelegate];
     }
@@ -62,7 +65,7 @@
 
 - (void)viewDidUnload {
     [self setTvMenu:nil];
-    [super viewDidUnload];
+    [super viewDidUnload];    
 }
 
 
@@ -74,6 +77,14 @@
 -(void) onGameInProgress
 {
     [self performSegueWithIdentifier:@"gameInProgressFromParameters" sender:self];
+}
+-(void) onGameHistory
+{
+    [self performSegueWithIdentifier:@"historicalGamesFromParams" sender:self];    
+}
+-(void) onTopCelebrities
+{
+    [self performSegueWithIdentifier:@"topCelebritiesFromParams" sender:self];
 }
 -(void) onGiveUpGame
 {
@@ -139,5 +150,8 @@
 
 -(void) onOpponentStatusUpdated {
     
+}
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
 }
 @end

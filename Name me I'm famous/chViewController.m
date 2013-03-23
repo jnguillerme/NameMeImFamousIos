@@ -109,7 +109,9 @@
 
 -(void) onOpponentStatusUpdated {
 }
-
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
+}
 -(void)onNewCelebrity:(NSString *)name withRole:(NSString *)role
 {
     // ADD TO LOCAL DATABASE

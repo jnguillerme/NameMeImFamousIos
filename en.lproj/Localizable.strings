@@ -77,7 +77,7 @@
 "CONFIRM_DISCONNECT" = "Are you sure you want to disconnect ?";
 "CANCEL" = "Cancel";
 "OK" = "Ok";
-"OPPONENT_HAS_QUIT" = "% has quit";
+"OPPONENT_HAS_QUIT" = "%@ has quit";
 "AVAILABLE_PACKAGES" = "Available packages";
 "NEW_GAME" = "New Game";
 "NEW_GAME_DESCRIPTION" = "Start a new game";
@@ -111,4 +111,14 @@
 "GAMEINPROGRESS_DESCRIPTION" = "Back to games in progress screen";
 "GIVEUPGAME" = "Quit game";
 "GIVEUPGAME_DESCRIPTION" = "";
-
+"MY_GAMES" = "My games";
+"MY_GAMES_DESCRIPTION" = "History of my games";
+"TOP_CELEBRITIES" = "Top celebrities";
+"TOP_CELEBRITIES_DESCRIPTION" = "Celebrities most choosen";
+"WON" = "Won";
+"LOST" = "Lost";
+"OPPONENT" = "Opponent";
+"RESULT" = "Result";
+"MY_CELEBRITY" = "My celebrity";
+"MY_OPPONENT_CELEBRITY" = "My opponent's celebrity";
+"QUESTION_ASKED_HISTORY" = "Choose a question";

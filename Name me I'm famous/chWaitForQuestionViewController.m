@@ -194,7 +194,10 @@ NSString * const K_QUESTION_ID_TO_ANSWER_KEY = @"NMIF.ANSWERQUESTIONVIEWID.QUEST
 -(void) onOpponentStatusUpdated {
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
 }
-
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
+    [self.navigationController pushViewController:VC animated:YES];
+}
 #pragma nmifMenuAnswerQuestionTableView
 - (void)onAnswerMaybe {
     [self answer:@"maybe"];

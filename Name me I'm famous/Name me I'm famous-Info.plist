@@ -20,7 +20,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>mnif.335852886514062</string>
+	<string>nmif.335852886514062</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -44,9 +44,9 @@
 	<string>1.0</string>
 	<key>FacebookAppID</key>
 	<string>335852886514062</string>
-	<key>UIApplicationExitsOnSuspend</key>
-	<true/>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard_iPhone</string>

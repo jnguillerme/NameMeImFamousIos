@@ -71,56 +71,56 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="W78-Lg-Dux">
-                                <rect key="frame" x="20" y="84" width="73" height="21"/>
+                                <rect key="frame" x="14" y="61" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="jre-1t-VKn">
-                                <rect key="frame" x="20" y="115" width="73" height="21"/>
+                                <rect key="frame" x="14" y="92" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="fFR-ie-qjp">
-                                <rect key="frame" x="20" y="146" width="73" height="21"/>
+                                <rect key="frame" x="14" y="123" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mot de passe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="hp7-gk-swy">
-                                <rect key="frame" x="20" y="174" width="110" height="21"/>
+                                <rect key="frame" x="14" y="151" width="110" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="flY-ra-1o0">
-                                <rect key="frame" x="138" y="80" width="169" height="30"/>
+                                <rect key="frame" x="132" y="57" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.64705884456634521" green="0.74901962280273438" blue="0.7568628191947937" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="YVy-09-7K5">
-                                <rect key="frame" x="138" y="111" width="169" height="30"/>
+                                <rect key="frame" x="132" y="88" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.64705884459999996" green="0.74901962280000001" blue="0.75686281919999998" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="zZM-td-iQ6">
-                                <rect key="frame" x="138" y="142" width="169" height="30"/>
+                                <rect key="frame" x="132" y="119" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.64705884459999996" green="0.74901962280000001" blue="0.75686281919999998" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="a7p-Ni-paZ">
-                                <rect key="frame" x="138" y="173" width="169" height="30"/>
+                                <rect key="frame" x="132" y="150" width="169" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.64705884459999996" green="0.74901962280000001" blue="0.75686281919999998" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -132,7 +132,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="o83-KZ-JHj">
-                                <rect key="frame" x="6" y="237" width="308" height="80"/>
+                                <rect key="frame" x="6" y="188" width="308" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -149,7 +149,7 @@
                         <outlet property="tfName" destination="flY-ra-1o0" id="aov-sT-8qg"/>
                         <outlet property="tfPassword" destination="a7p-Ni-paZ" id="tLx-h0-PzZ"/>
                         <outlet property="tvMenu" destination="o83-KZ-JHj" id="Yu3-Ir-Dv3"/>
-                        <segue destination="g7g-7Z-rLE" kind="push" identifier="newGameInProgress" id="RCO-OW-hoU"/>
+                        <segue destination="g7g-7Z-rLE" kind="push" identifier="gameInProgressFromNewPlayer" id="RCO-OW-hoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPy-L2-9gM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,7 +161,7 @@
             <objects>
                 <viewController id="l8C-OG-Hpf" customClass="nmifParameterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C7f-Ew-BSI">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Sjl-gj-nmX">
@@ -174,7 +174,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="oTA-aP-Fqu">
-                                <rect key="frame" x="6" y="125" width="308" height="298"/>
+                                <rect key="frame" x="6" y="125" width="308" height="318"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -185,20 +185,56 @@
                     <connections>
                         <outlet property="tvMenu" destination="oTA-aP-Fqu" id="HC2-8H-Ah8"/>
                         <segue destination="atL-5y-NHx" kind="push" identifier="packageManagementFromParameters" id="oV4-Kl-OFs"/>
-                        <segue destination="gZt-jQ-mN7" kind="push" identifier="loginMenuFromParameters" id="QQv-wR-oY9"/>
                         <segue destination="g7g-7Z-rLE" kind="push" identifier="gameInProgressFromParameters" id="1ly-DB-yHN"/>
+                        <segue destination="iZA-QF-y72" kind="push" identifier="topCelebritiesFromParams" id="XfC-w6-tOp"/>
+                        <segue destination="2" kind="push" identifier="loginMenuFromParameters" id="B29-Sw-svL"/>
+                        <segue destination="9f1-H6-ja9" kind="push" identifier="historicalGamesFromParams" id="YiV-FR-s44"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzp-LQ-reN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2407" y="-301"/>
+            <point key="canvasLocation" x="927" y="-212"/>
+        </scene>
+        <!--Nmif Top Celebrities View Controller-->
+        <scene sceneID="8eZ-6T-HXL">
+            <objects>
+                <viewController id="iZA-QF-y72" customClass="nmifTopCelebritiesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ta1-MS-QBM">
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WUZ-Vo-2mK">
+                                <rect key="frame" x="19" y="31" width="283" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Y6L-CK-WkZ">
+                                <rect key="frame" x="6" y="121" width="308" height="339"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xpm-2E-VGA"/>
+                    <connections>
+                        <outlet property="tvTopCelebrities" destination="Y6L-CK-WkZ" id="DDZ-gD-IEZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lki-8G-4HY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2571" y="512"/>
         </scene>
         <!--Nmif Package Management View Controller - Catégories-->
         <scene sceneID="IhE-9Y-RF1">
             <objects>
                 <viewController id="atL-5y-NHx" customClass="nmifPackageManagementViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qq9-RE-IGO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="XA4-EV-NI7">
@@ -211,7 +247,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9eq-R0-nno">
-                                <rect key="frame" x="-4" y="72" width="324" height="349"/>
+                                <rect key="frame" x="-4" y="72" width="324" height="370"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -240,7 +276,7 @@
             <objects>
                 <tableViewController restorationIdentifier="celebrityListView" id="ITZ-Ox-WJY" customClass="nmifCelebrityListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DvF-jt-sYp">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.050980392156862744" green="0.47843137254901957" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -296,7 +332,7 @@
             <objects>
                 <viewController storyboardIdentifier="answerQuestionViewID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k0X-Vg-Pgd" customClass="chWaitForQuestionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y0y-fu-rCy">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Question" textAlignment="center" lineBreakMode="clip" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" id="QbU-ua-WqH">
@@ -335,7 +371,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Nxs-Fk-uM1">
-                                <rect key="frame" x="7" y="180" width="308" height="169"/>
+                                <rect key="frame" x="7" y="180" width="308" height="190"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -364,14 +400,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiA-ol-7rM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2874" y="463"/>
+            <point key="canvasLocation" x="3094" y="-115"/>
         </scene>
         <!--Ch New Question View Controller - Question-->
         <scene sceneID="J8A-uF-4XI">
             <objects>
                 <viewController storyboardIdentifier="askQuestionViewID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZzJ-ba-R4f" customClass="chNewQuestionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ph-Dr-X38">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Question" textAlignment="center" lineBreakMode="clip" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" id="gBM-CJ-5lx">
@@ -381,7 +417,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="fAY-lG-eFS">
-                                <rect key="frame" x="26" y="156" width="275" height="30"/>
+                                <rect key="frame" x="26" y="156" width="249" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.64705884459999996" green="0.74901962280000001" blue="0.75686281919999998" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -408,7 +444,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="c55-Na-cJq">
-                                <rect key="frame" x="10" y="194" width="308" height="135"/>
+                                <rect key="frame" x="10" y="194" width="308" height="156"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -425,6 +461,21 @@
                                 </state>
                                 <connections>
                                     <segue destination="l8C-OG-Hpf" kind="push" identifier="paramFromNewQuestion" id="OTn-2o-q3W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qfX-ya-2f7">
+                                <rect key="frame" x="268" y="149" width="50" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" image="questions.png">
+                                    <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onQuestionAskedHistoryPressed:" destination="ZzJ-ba-R4f" eventType="touchUpInside" id="Qvm-TS-Rrm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Opponent Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vGI-wU-9FY">
@@ -447,22 +498,23 @@
                         <outlet property="tvMenu" destination="c55-Na-cJq" id="R4c-SC-Jv0"/>
                         <segue destination="Cxd-4I-JUA" kind="push" identifier="displayAnswer" id="Fav-DT-Lfq"/>
                         <segue destination="tJm-tr-fz6" kind="push" identifier="showQuestionsHistory" id="JO3-WD-sYM"/>
+                        <segue destination="gIF-29-Ij7" kind="push" identifier="questionAskedHistory" id="08c-dh-mEh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Or4-DW-UyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3577" y="132"/>
+            <point key="canvasLocation" x="3704" y="349"/>
         </scene>
         <!--Ch View Controller Questions History - Historique-->
         <scene sceneID="eXO-f2-x1K">
             <objects>
                 <viewController restorationIdentifier="historicalQuestionsView" title="Historique" id="tJm-tr-fz6" customClass="chViewControllerQuestionsHistory" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E8H-LU-iD1">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uF0-HU-kpH">
-                                <rect key="frame" x="11" y="60" width="298" height="380"/>
+                                <rect key="frame" x="11" y="60" width="298" height="400"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -486,7 +538,7 @@
             <objects>
                 <viewController storyboardIdentifier="celebrityChoiceViewID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BmY-UZ-1GL" customClass="chCelebrityChoiceViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wTe-c7-5EI">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="kQ2-HY-1bm">
@@ -515,7 +567,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OcO-kj-3FJ">
-                                <rect key="frame" x="7" y="176" width="308" height="90"/>
+                                <rect key="frame" x="7" y="176" width="308" height="110"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -685,7 +737,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DNd-hk-hRA">
-                                <rect key="frame" x="6" y="214" width="308" height="75"/>
+                                <rect key="frame" x="6" y="214" width="308" height="76"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -733,7 +785,7 @@
             <objects>
                 <viewController id="QS8-zQ-71Q" customClass="chGameOverViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iMF-8h-v5q" customClass="chGame">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" id="VwU-fz-IWo">
@@ -752,7 +804,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="NgQ-ZQ-4j4">
-                                <rect key="frame" x="10" y="199" width="308" height="135"/>
+                                <rect key="frame" x="10" y="199" width="308" height="156"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -769,7 +821,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJe-mR-OSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="105"/>
+            <point key="canvasLocation" x="2334" y="-423"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Tsd-Gd-gwu">
@@ -786,7 +838,7 @@
             <objects>
                 <viewController id="gZt-jQ-mN7" customClass="nmifConnectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UWt-kV-9AO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="xG1-zE-6e0">
@@ -841,7 +893,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nGC-YK-9hX">
-                                <rect key="frame" x="6" y="175" width="308" height="55"/>
+                                <rect key="frame" x="6" y="175" width="308" height="76"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -865,9 +917,9 @@
         <!--Nmif Game In Progress View Controller - Parties en cours-->
         <scene sceneID="FMq-fo-bti">
             <objects>
-                <viewController id="g7g-7Z-rLE" customClass="nmifGameInProgressViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameInProgressViewID" id="g7g-7Z-rLE" customClass="nmifGameInProgressViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YhO-GP-bo3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Dlg-g5-fD8">
@@ -880,13 +932,13 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xYj-ed-j0u">
-                                <rect key="frame" x="0.0" y="149" width="320" height="256"/>
+                                <rect key="frame" x="0.0" y="149" width="320" height="276"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.090196080509999998" green="0.49803924560000001" blue="0.52156865600000002" alpha="1" colorSpace="deviceRGB"/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="0yj-3v-LVN">
-                                <rect key="frame" x="6" y="70" width="308" height="90"/>
+                                <rect key="frame" x="6" y="70" width="308" height="110"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -945,11 +997,81 @@
             </objects>
             <point key="canvasLocation" x="273" y="-59"/>
         </scene>
+        <!--Nmif Historical Games View Controller-->
+        <scene sceneID="MaS-G2-5lU">
+            <objects>
+                <viewController id="9f1-H6-ja9" customClass="nmifHistoricalGamesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QtZ-zl-aGF">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="oNL-Bf-nVr">
+                                <rect key="frame" x="19" y="31" width="283" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Fs8-rG-RLh">
+                                <rect key="frame" x="6" y="121" width="308" height="319"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ohg-eC-9Lr"/>
+                    <connections>
+                        <outlet property="tvHistoricalGames" destination="Fs8-rG-RLh" id="lL2-Hr-yYl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rrj-WT-lF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1011" y="503"/>
+        </scene>
+        <!--Nmif Question Asked History View Controller-->
+        <scene sceneID="0uA-Ju-4Kh">
+            <objects>
+                <viewController id="gIF-29-Ij7" customClass="nmifQuestionAskedHistoryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VLH-dg-qiO">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name me I'm famous !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ngg-0e-JSH">
+                                <rect key="frame" x="19" y="31" width="283" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1cs-Wa-OAU">
+                                <rect key="frame" x="6" y="121" width="308" height="319"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zYI-E2-CfK"/>
+                    <connections>
+                        <outlet property="tvQuestionAsked" destination="1cs-Wa-OAU" id="DyN-RP-CFg"/>
+                        <segue destination="ZzJ-ba-R4f" kind="push" identifier="questionFromQuestionAskedHistory" id="4Q6-eQ-GNG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5oE-wd-JgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3067" y="552"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Default.png" width="320" height="480"/>
         <image name="login-button-small@2x.png" width="302" height="86"/>
         <image name="params.png" width="24" height="24"/>
+        <image name="questions.png" width="24" height="21"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -960,10 +1082,10 @@
         <segue reference="66q-7e-rX8"/>
         <segue reference="1ly-DB-yHN"/>
         <segue reference="JpA-Ra-Ipa"/>
-        <segue reference="OWQ-MW-caQ"/>
         <segue reference="ims-DZ-s0s"/>
+        <segue reference="OWQ-MW-caQ"/>
         <segue reference="2QO-mE-NzI"/>
         <segue reference="lTS-B4-CRh"/>
-        <segue reference="QQv-wR-oY9"/>
+        <segue reference="B29-Sw-svL"/>
     </inferredMetricsTieBreakers>
 </document>

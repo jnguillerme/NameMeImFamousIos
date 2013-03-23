@@ -153,7 +153,10 @@
 -(void) onOpponentStatusUpdated {
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
 }
-
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
+    [self.navigationController pushViewController:VC animated:YES];
+}
 #pragma GMRestoreViewDelegate
 - (void) restorePrivateData
 {

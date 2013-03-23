@@ -19,11 +19,11 @@ NSString * const K_PASSWORD_KEY = @"KompPasswordKey";
 
 //89.226.34.6
 
-NSString * const K_CREATE_PLAYER_ACCOUNT_URL = @"http://89.226.34.6:8081/createPlayerAccount";
-NSString * const K_LOGIN_PLAYER_ACCOUNT_URL  = @"http://89.226.34.6:8081/loginPlayerAccount";
-NSString * const K_LOGOUT_PLAYER_ACCOUNT_URL  = @"http://89.226.34.6:8081/logoutPlayerAccount";
-NSString * const K_FORGOT_PASSWORD_URL = @"http://89.226.34.6/forgotPassword";
-NSString * const K_PING_PLAYER_ACCOUNT_URL  = @"http://89.226.34.6:8081/pingPlayerAccount";
+NSString * const K_CREATE_PLAYER_ACCOUNT_URL = @"http://54.247.53.94:8081/createPlayerAccount";
+NSString * const K_LOGIN_PLAYER_ACCOUNT_URL  = @"http://54.247.53.94:8081/loginPlayerAccount";
+NSString * const K_LOGOUT_PLAYER_ACCOUNT_URL  = @"http://54.247.53.94:8081/logoutPlayerAccount";
+NSString * const K_FORGOT_PASSWORD_URL = @"http://54.247.53.94:8081/forgotPassword";
+NSString * const K_PING_PLAYER_ACCOUNT_URL  = @"http://54.247.53.94:8081/pingPlayerAccount";
 
 @synthesize delegate;
 @synthesize sessionID;

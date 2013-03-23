@@ -108,7 +108,9 @@ NSString * const K_CELEBRITY_KEY = @"NMIF.SUBMITANSWERVIEWID.CELEBRITY";
 
 #pragma nmifMenuSubmitCelebrityTableViewDelegate
 - (void)onCelebritySubmit {
-    [[GMHelper sharedInstance] submitCelebrity:self.tfCelebrity.text withDelegate:self];
+    if (self.tfCelebrity.text.length > 0 ) {
+        [[GMHelper sharedInstance] submitCelebrity:self.tfCelebrity.text withDelegate:self];
+    }
 }
 
 #pragma GMHelperDelegate
@@ -148,7 +150,10 @@ NSString * const K_CELEBRITY_KEY = @"NMIF.SUBMITANSWERVIEWID.CELEBRITY";
 -(void) onOpponentStatusUpdated {
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
 }
-
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
+{
+    [self.navigationController pushViewController:VC animated:YES];
+}
 #pragma GMRestoreView Delegate
 - (void) restorePrivateData
 {

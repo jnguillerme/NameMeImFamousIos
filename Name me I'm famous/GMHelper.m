@@ -12,8 +12,10 @@
 #import "SBJson.h"
 #import "MBProgressHUD.h"
 #import "Celebrity.h"
+#import "nmifCelebrity.h"
 #import "nmifGame.h"
 #import "nmifCommand.h"
+#import "nmifHistoricalGame.h"
 #include "nmifServerCommands.h"
 
 @implementation GMHelper
@@ -21,9 +23,14 @@
 @synthesize delegate;
 @synthesize sessionID;
 @synthesize games = _games;
+@synthesize historicalGames = _historicalGames;
 @synthesize fGamesInProgressLoaded;
 @synthesize activeGameID;
 @synthesize fCelebrityLoaded;
+@synthesize topCelebrities = _topCelebrities;
+@synthesize questionHistory = _questionHistory;
+
+NSString * const K_QUESTION_HISTORY_KEY = @"NMIF.QUESTIONASKED.HISTORY";
 
 static GMHelper * sharedHelper = 0;
 
@@ -44,11 +51,41 @@ static GMHelper * sharedHelper = 0;
     _games = games;
 }
 
+-(NSMutableArray*) historicalGames {
+    if (_historicalGames == nil) {
+        _historicalGames = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return _historicalGames;
+}
+-(void) setHistoricalGames:(NSMutableArray *)historicalGames {
+    _historicalGames = historicalGames;
+}
+
+-(NSMutableArray*) topCelebrities {
+    if (_topCelebrities == nil) {
+        _topCelebrities = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return _topCelebrities;
+}
+-(void) setTopCelebrities:(NSMutableArray *)topCelebrities {
+    _topCelebrities = topCelebrities;
+}
+
+-(NSMutableArray*) questionHistory {
+    if (_questionHistory == nil) {
+        _questionHistory = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return _questionHistory;
+}
+-(void) setQuestionHistory:(NSMutableArray *)questionHistory {
+    _questionHistory = questionHistory;
+}
 -(id) init {
     self = [super init];
     if (self) {
         sessionID = nil;
         [self loadFromLocalStore];
+        [self loadQuestionHistory];
     }
     return self;
 }
@@ -188,7 +225,7 @@ static GMHelper * sharedHelper = 0;
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
     //89.226.34.6, 5001
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"89.226.34.6",5001, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"54.247.53.94",5001, &readStream, &writeStream);
     
     inputStream = (__bridge NSInputStream*)readStream;
     outputStream = (__bridge NSOutputStream*)writeStream;
@@ -327,12 +364,12 @@ static GMHelper * sharedHelper = 0;
 }
 -(void) getTopCelebrityList
 {
-    
+    [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@$", K_GET_TOP_CELEBRITY_LIST, sessionID]];
 }
 
 -(void) getMyGamesHistory
 {
-    
+    [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@$", K_GET_MY_GAMES_HISTORY, sessionID]];
 }
 -(void) getGamesInProgress
 {
@@ -696,7 +733,13 @@ static GMHelper * sharedHelper = 0;
         [self onCommandNewPackage:param1 isAvailable:param2];
     } else if ([command compare:K_CELEBRITY_LIST_END] == NSOrderedSame) {
         [self onCommandCelebrityListEnd];
+    } else if ([command compare:K_TOP_CELEBRITY] == NSOrderedSame) {
+        [self onCommandTopCelebrity:param1 withName:param2 andRole:param3];
+    } else if ([command compare:K_NEW_HISTORICAL_GAME] == NSOrderedSame) {
+        [self onCommandNewHistoricalGame:param1 withOpponent:param2 andWinnerIsMe:param3 andMyCelebrity:param4 andMyOpponentCelebrity:param5];
     }
+
+
 }
 
 #pragma mark - Process commands from the server
@@ -708,6 +751,8 @@ static GMHelper * sharedHelper = 0;
     [self getGamesInProgress];
     [self getAvailablePackages];
     [self getCelebrityList];
+    [self getTopCelebrityList];
+    [self getMyGamesHistory];
 }
 -(void) onCommandNewGame:(NSString*)gameID withOpponent:(NSString*)opponent andPackages:(NSString*)packages
 {
@@ -735,13 +780,20 @@ static GMHelper * sharedHelper = 0;
 -(void) onCommandNewCelebrity:(NSString*)celebrityID withName:(NSString*)name andRole:(NSString*)role
 {
     [self addCelebrityToDatastore:[celebrityID intValue] withCelebrityName:name andRole:role];
-   // [delegate onNewCelebrity:celebrityID withRole:role];
 }
 -(void) onCommandCelebrityListEnd
 {
     self.fCelebrityLoaded = true;
-    [delegate onCelebrityListEnd];
+    if ([delegate respondsToSelector:@selector(onCelebrityListEnd)]) {
+        [delegate onCelebrityListEnd];
+    }
 }
+-(void) onCommandTopCelebrity:(NSString*)position withName:(NSString*)name andRole:(NSString*)role
+{
+    nmifCelebrity *c = [[nmifCelebrity alloc] initWithName:name andRole:role];   
+    [self.topCelebrities insertObject:c atIndex:[position intValue]];
+}
+
 -(void) onCommandPickupCelebrityAck:(NSString*)gameID withCelebrity:(NSString*)celebrity
 {
     [[self.games objectForKey:gameID] setCelebrityPickedUpByMe:true];
@@ -870,7 +922,13 @@ static GMHelper * sharedHelper = 0;
 -(void) onCommandOpponentQuit:(NSString*)gameID
 {
     if ([gameID compare:activeGameID] == NSOrderedSame) {
-        [delegate onOpponentQuit];
+        NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_HAS_QUIT", nil), [self opponentName]];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NMIF", nil) message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [self gameOver];
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        UIViewController<GMRestoreViewDelegate> *VC = (UIViewController<GMRestoreViewDelegate>*)[storyBoard instantiateViewControllerWithIdentifier:@"gameInProgressViewID"];
+        [delegate onOpponentQuit:VC];
     } else {
         [[self.games objectForKey:gameID] addPendingEvents:K_OPPONENT_QUIT_GAME withParams: [[NSArray alloc] initWithObjects:gameID, nil]];
     }
@@ -883,6 +941,12 @@ static GMHelper * sharedHelper = 0;
     } else {
         [self enablePackage:packageName isAvailable:NO];
     }
+}
+
+-(void) onCommandNewHistoricalGame:(NSString*)gameDate withOpponent:(NSString*)theOpponent andWinnerIsMe:(NSString*)Iwon andMyCelebrity:(NSString*)myCelebrity andMyOpponentCelebrity:(NSString*)myOpponentCelebrity
+{
+    nmifHistoricalGame *theHistoricalGame = [[nmifHistoricalGame alloc] initWithDate:gameDate andOpponent:theOpponent andWinnerIsMe:Iwon andMyCelebrity:myCelebrity andMyOpponentCelebrity:myOpponentCelebrity];
+    [[self historicalGames] addObject:theHistoricalGame];
 }
 
 #pragma mark - active game interaction
@@ -931,5 +995,26 @@ static GMHelper * sharedHelper = 0;
 
 }
 
+-(void) addQuestionToHistory:(NSString*)theQuestion
+{
+    [self.questionHistory addObject:theQuestion];
+    NSString *theKey = [NSString stringWithFormat:@"%@.%d", K_QUESTION_HISTORY_KEY, [self.questionHistory count]];
+
+    NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setObject:theQuestion forKey:theKey];
+    [standardUserDefaults synchronize];
+}
+
+-(void) loadQuestionHistory
+{
+    int i = 1;
+    NSString * theQuestion = nil;
+    NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
+
+    while ((theQuestion = [standardUserDefaults objectForKey:[NSString stringWithFormat:@"%@.%d", K_QUESTION_HISTORY_KEY, i]]) != nil ) {
+        [self.questionHistory addObject:theQuestion];
+         i++;
+    }
+}
 
 @end

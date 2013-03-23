@@ -77,7 +77,7 @@
 "CONFIRM_DISCONNECT" = "Etes vous sur de vouloir vous déconnecter?";
 "CANCEL" = "Annuler";
 "OK" = "Oui";
-"OPPONENT_HAS_QUIT" = "% a quitté la partie";
+"OPPONENT_HAS_QUIT" = "%@ a quitté la partie";
 "AVAILABLE_PACKAGES" = "Catégories disponibles";
 "NEW_GAME" = "Nouvelle Partie";
 "NEW_GAME_DESCRIPTION" = "Démarrer une nouvelle partie";
@@ -111,3 +111,14 @@
 "GAMEINPROGRESS_DESCRIPTION" = "Retour  à la liste des parties en cours";
 "GIVEUPGAME" = "Quitter";
 "GIVEUPGAME_DESCRIPTION" = "Abandonner la partie en cours";
+"MY_GAMES" = "Mes parties";
+"MY_GAMES_DESCRIPTION" = "Historique de mes parties";
+"TOP_CELEBRITIES" = "Top celebrities";
+"TOP_CELEBRITIES_DESCRIPTION" = "Personnalités les plus choisies";
+"WON" = "Gagné";
+"LOST" = "Perdu";
+"OPPONENT" = "Adversaire";
+"RESULT" = "Résultat";
+"MY_CELEBRITY" = "Ma personnalité";
+"MY_OPPONENT_CELEBRITY" = "La personnalité de mon adversaire";
+"QUESTION_ASKED_HISTORY" = "Choisissez une question";

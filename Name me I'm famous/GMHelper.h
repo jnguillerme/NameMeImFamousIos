@@ -41,7 +41,8 @@
 -(void) onCelebrityListEnd;
 -(void) onGameWon;
 -(void) onGameLost:(NSString*)celebrity;
--(void) onOpponentQuit;
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC;
+;
 
 @end
 
@@ -62,13 +63,14 @@
 
 @property (nonatomic, retain) id <GMHelperDelegate> delegate;
 @property (nonatomic, retain) NSString *sessionID;
-@property (nonatomic, retain) NSString *opponentName;
-@property (nonatomic, retain) NSString *opponentStatus;
-//@property (nonatomic, retain) NSMutableDictionary* questionList;
 @property (nonatomic, retain) NSMutableDictionary* games;
+@property (nonatomic, retain) NSMutableArray* historicalGames;
 @property (nonatomic) bool fGamesInProgressLoaded;
 @property (nonatomic, retain) NSString *activeGameID;
 @property (nonatomic) bool fCelebrityLoaded;
+@property (nonatomic, retain) NSMutableArray *questionHistory;
+
+@property (nonatomic, retain) NSMutableArray *topCelebrities;
 
 // methods
 -(void) newRandomGame:(id <GMHelperDelegate>)GMDelegate;
@@ -110,6 +112,8 @@
 - (void) clearLocalDataForKey:(NSString*)key;
 - (bool) hasLocalDataForKey:(NSString*)key;
 - (void) clearDataStore;
+
+-(void) addQuestionToHistory:(NSString*)theQuestion;
 
 -(bool) enablePackage:(NSString*)packageName isAvailable:(bool)bAvailable;
 -(void) sendPackageUpdate:(Role*)updatedRole;

@@ -10,7 +10,7 @@
 #define Name_me_I_m_famous_nmifServerCommands_h
 
 //89.226.34.6
-NSString * const K_NEW_RANDOM_GAME_URL = @"http://89.226.34.6:8081/newRandomGame";
+NSString * const K_NEW_RANDOM_GAME_URL = @"http://54.247.53.94:8081/newRandomGame";
 
 // commands received on the stream
 NSString * const K_NOTIFICATION_ON = @"notifymeon";
@@ -22,9 +22,11 @@ NSString * const K_NEW_GAMEINPROGRESS = @"newgameinprogress";
 NSString * const K_NEW_GAMEINPROGRESS_QUESTION = @"newgameinprogressquestion";
 NSString * const K_NEW_GAMEINPROGRESS_END = @"newgameinprogressend";
 NSString * const K_GET_MY_GAMES_HISTORY = @"getmygameshistory";
+NSString * const K_NEW_HISTORICAL_GAME = @"newhistoricalgame";
 NSString * const K_GET_CELEBRITY_LIST = @"getcelebritylist";
 NSString * const K_GET_AVAILABLE_PACKAGES = @"getavailablepackages";
 NSString * const K_GET_TOP_CELEBRITY_LIST = @"gettopcelebritylist";
+NSString * const K_TOP_CELEBRITY = @"topcelebrity";
 NSString * const K_NEW_CELEBRITY = @"newcelebrity";
 NSString * const K_PICKUP_CELEBRITY = @"pickupcelebrity";
 NSString * const K_PICKUP_CELEBRITY_ACK = @"pickupcelebrityack";

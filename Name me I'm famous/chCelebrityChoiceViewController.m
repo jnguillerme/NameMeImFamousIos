@@ -197,13 +197,9 @@
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
 }
 
--(void) onOpponentQuit
+-(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC
 {
-    NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_HAS_QUIT", nil), [[GMHelper sharedInstance] opponentName]];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NMIF", nil) message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    
-    [self performSegueWithIdentifier:@"gameInProgressFromCelebrityChoice" sender:self];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma GMRestoreViewDelegate
 - (void) restorePrivateData

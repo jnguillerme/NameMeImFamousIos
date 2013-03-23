@@ -11,6 +11,8 @@
 @protocol nmifMenuParametersTableViewDelegate
 -(void) onPackageManagement;
 -(void) onGameInProgress;
+-(void) onGameHistory;
+-(void) onTopCelebrities;
 -(void) onGiveUpGame;
 -(void) onDisconnect;
 @end

@@ -10,8 +10,9 @@
 #import "GMHelper.h"
 #import "nmifQuestion.h"
 #import "nmifMenuAskQuestionTableView.h"
+#import "nmifQuestionAskedHistoryViewController.h"
 
-@interface chNewQuestionViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifMenuAskQuestionTableViewDelegate> {
+@interface chNewQuestionViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifMenuAskQuestionTableViewDelegate, nmifQuestionChoiceDelegate> {
     nmifMenuAskQuestionTableView *menuTableView;
     NSString *questionAsked;
 }
