@@ -153,13 +153,19 @@ NSString * const K_QUESTION_ID_KEY = @"NMIF.ASKQUESTIONVIEWID.QUESTIONID";
     
         // store the fact that the question has been asked
         [[GMHelper sharedInstance] storeLocalData:@"1" forKey:K_QUESTION_ASKED_KEY];
-        // store the question in question history
-        [[GMHelper sharedInstance] addQuestionToHistory:self.textFieldQuestion.text];
+        [[GMHelper sharedInstance] storeLocalData:self.textFieldQuestion.text forKey:K_QUESTION_KEY];
 
+        // store the question in question history
+        if (questionAsked == nil || [questionAsked length] == 0) {
+            [[GMHelper sharedInstance] addQuestionToHistory:self.textFieldQuestion.text];
+        }
     }
 }
 -(void) onShowQuestionHistory
 {
+    if (questionAsked != nil) {
+        questionAsked = @"";
+    }
     [self performSegueWithIdentifier:@"showQuestionsHistory" sender:self];
 }
 

@@ -21,14 +21,14 @@
 @synthesize lblAnswer;
 @synthesize question = _question;
 
-//NSString * const K_QUESTION_KEY = @"NMIF.QUESTIONANSWERVIEWID.QUESTION";
-//NSString * const K_ANSWER_KEY = @"NMIF.QUESTIONANSWERVIEWID.ANSWER";
+NSString * const K_QUESTION_ANSWERVIEW_KEY = @"NMIF.QUESTIONANSWERVIEWID.QUESTION";
+NSString * const K_ANSWER_ANSWERVIEW_KEY = @"NMIF.QUESTIONANSWERVIEWID.ANSWER";
 
 -(void) setQuestion:(nmifQuestion *)question
 {
     _question = question;
-  //  [[GMHelper sharedInstance] storeLocalData:_question.question forKey:K_QUESTION_KEY];
-   // [[GMHelper sharedInstance] storeLocalData:_question.answer forKey:K_ANSWER_KEY];
+    [[GMHelper sharedInstance] storeLocalData:_question.question forKey:K_QUESTION_ANSWERVIEW_KEY];
+    [[GMHelper sharedInstance] storeLocalData:_question.answer forKey:K_ANSWER_ANSWERVIEW_KEY];
 }
 
 -(nmifQuestion*) question
@@ -67,7 +67,10 @@
     
     [self.tvMenu reloadData];
     
-    
+    [[GMHelper sharedInstance] saveGameInProgress:@"questionAnsweredViewID"];
+}
+- (void) viewWillAppear:(BOOL)animated
+{
     self.lblQuestion.text = [NSString stringWithFormat:NSLocalizedString(@"ANSWER_PROVIDED_TO_QUESTION", nil), self.question.question, [[GMHelper sharedInstance] opponentName]];
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
 
@@ -84,7 +87,12 @@
     }
     
     self.lblAnswer.text = answer;
-    [[GMHelper sharedInstance] saveGameInProgress:@"questionAnsweredViewID"];
+
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [[GMHelper sharedInstance] setDelegate:self];
     [[GMHelper sharedInstance] replayPendingEvents];
 }
 
@@ -160,9 +168,9 @@
 #pragma GMRestoreViewDelegate
 - (void) restorePrivateData
 {
-/*    if ([[GMHelper sharedInstance] hasLocalDataForKey:K_QUESTION_KEY] && [[GMHelper sharedInstance]hasLocalDataForKey:K_ANSWER_KEY]) {
-        _question.question = [[GMHelper sharedInstance] localDataForKey:K_QUESTION_KEY];
-        _question.answer = [[GMHelper sharedInstance] localDataForKey:K_ANSWER_KEY];
+    if ([[GMHelper sharedInstance] hasLocalDataForKey:K_QUESTION_ANSWERVIEW_KEY] && [[GMHelper sharedInstance]hasLocalDataForKey:K_ANSWER_ANSWERVIEW_KEY]) {
+        _question = [[nmifQuestion alloc] initWithQuestion:[[GMHelper sharedInstance] localDataForKey:K_QUESTION_ANSWERVIEW_KEY]];
+        _question.answer = [[GMHelper sharedInstance] localDataForKey:K_ANSWER_ANSWERVIEW_KEY];
     }
-*/}
+}
 @end

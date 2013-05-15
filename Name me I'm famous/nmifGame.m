@@ -7,7 +7,7 @@
 //
 
 #import "nmifGame.h"
-#import "nmifCommand.h"
+
 
 @implementation nmifGame
 
@@ -131,6 +131,10 @@
 -(void) addPendingEvents:(NSString*)command withParams:(NSArray*)params
 {
     [pendingEvents addObject:[[nmifCommand alloc] initWithCommand:command andParams:params]];
+}
+-(void) addPendingEvents:(nmifCommand*)command
+{
+    [pendingEvents addObject:command];
 }
 -(NSArray*) getPendingEvents
 {

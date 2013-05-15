@@ -39,29 +39,25 @@
     self.tvMenu.delegate = menuTableView;
     self.tvMenu.dataSource = menuTableView;
     
-    [menuTableView addMenuItem:@"Partie aleatoire" withDescription:@"lancer une partie avec un joueur au hasard" andImage:@"newRandomGame.png" andAction:@selector(newGame) andDelegate:self];
+    [menuTableView addMenuItem:NSLocalizedString(@"RANDOM_GAME", nil) withDescription:NSLocalizedString(@"RANDOM_GAME_DESCRIPTION", nil) andImage:@"newRandomGame.png" andAction:@selector(newGame) andDelegate:self];
+    [menuTableView addMenuItem:NSLocalizedString(@"INVITE_FRIEND", nil) withDescription:NSLocalizedString(@"INVITE_FRIEND_DESCRIPTION", nil) andImage:@"inviteFriend.png" andAction:@selector(inviteFriend) andDelegate:self];
 
     [self.tvMenu reloadData];
-        
-    // Game in Progress tableView
-    gipTableView = [[nmifGameInProgressTableView alloc] initWithDelegate:self];
-    self.tvGameInProgress.delegate = gipTableView;
-    self.tvGameInProgress.dataSource = gipTableView;
-    
-    [[GMHelper sharedInstance] setDelegate:self];
 
-    if ([[GMHelper sharedInstance] fGamesInProgressLoaded] == true) {
-        [gipTableView loadGames];
-        [self.tvGameInProgress reloadData];
-    }
+    // Game in Progress tableView
+    [self loadGameInProgressTV];
+     
+     [[GMHelper sharedInstance] setDelegate:self];
 
     if ([[GMHelper sharedInstance] fCelebrityLoaded] == false || [[GMHelper sharedInstance] fGamesInProgressLoaded] == false) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = NSLocalizedString(@"LOADING_GAMES", nil);
     }
-    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
    [[self  navigationController] setNavigationBarHidden:YES animated:YES];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,14 +85,33 @@
         }
     }
 }
+
+-(void) loadGameInProgressTV
+{
+    if (gipTableView == nil) {
+        gipTableView = [[nmifGameInProgressTableView alloc] initWithDelegate:self];
+        self.tvGameInProgress.delegate = gipTableView;
+        self.tvGameInProgress.dataSource = gipTableView;
+    }
+    
+    if ([[GMHelper sharedInstance] fGamesInProgressLoaded] == true) {
+        [gipTableView loadGames];
+        [self.tvGameInProgress reloadData];
+    }
+}
+     
 #pragma mark delegate nmifMenuTableViewDelegate
-- (void)newGame {
+- (void)newGame
+{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"LOOKING_FOR_OPPONENT", nil);
     
     [[GMHelper sharedInstance] newRandomGame:self];
 }
-
+-(void)inviteFriend
+{
+    [self performSegueWithIdentifier:@"inviteFriendFromGameInProgress" sender:self];
+}
 #pragma mark delegate nmifGameInPogressTableViewDelegate
 -(void) showQuestionHistory:(NSString*)gameID
 {
@@ -114,7 +129,12 @@
     [[GMHelper sharedInstance] setActiveGameID:gameID];
     
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    UIViewController<GMRestoreViewDelegate> *VC = (UIViewController<GMRestoreViewDelegate>*)[storyBoard instantiateViewControllerWithIdentifier:[[GMHelper sharedInstance] gameInProgress]];
+    NSString *gameInProgress = [[GMHelper sharedInstance] gameInProgress];
+    if (gameInProgress == nil) {
+        gameInProgress = @"celebrityChoiceViewID";
+    }
+    
+    UIViewController<GMRestoreViewDelegate> *VC = (UIViewController<GMRestoreViewDelegate>*)[storyBoard instantiateViewControllerWithIdentifier:gameInProgress];
     [VC restorePrivateData];
     [self.navigationController pushViewController:VC animated:YES];
 }
@@ -128,6 +148,10 @@
     if ([[GMHelper sharedInstance] fCelebrityLoaded] == true) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
+}
+-(void) onNewGameInProgress
+{
+    [self loadGameInProgressTV];
 }
 -(void) onNewRandomGameSuccess {
     [self performSegueWithIdentifier:@"chooseCelebrityName" sender:self];
@@ -143,6 +167,7 @@
 
 -(void) onCelebrityListEnd
 {
+    BOOL gipl = [[GMHelper sharedInstance] fGamesInProgressLoaded];
     if ([[GMHelper sharedInstance] fGamesInProgressLoaded] == true) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }

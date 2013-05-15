@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "nmifUITableViewCellWithSwipe.h"
 
 @protocol nmifQuestionChoiceDelegate
 - (void)setQuestionAsked:(NSString*)question;
 @end
 
-@interface nmifQuestionAskedHistoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+@interface nmifQuestionAskedHistoryViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, nmifUITableViewCellWithSwipeDelegate> {
     NSString *questionSelected;
 }
 

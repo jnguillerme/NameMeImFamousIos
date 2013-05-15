@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblQuestionAsked;
 @property (weak, nonatomic) IBOutlet UILabel *lblOpponentStatus;
+@property (weak, nonatomic) IBOutlet UILabel *lblOpponentCelebrity;
 @property (weak, nonatomic) IBOutlet UITableView *tvMenu;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnParam;

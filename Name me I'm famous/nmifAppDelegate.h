@@ -24,5 +24,7 @@ extern NSString *const FBSessionStateChangedNotification;
 - (BOOL)openFBSessionWithAllowLoginUI:(BOOL)allowLoginUI withDelegate:(id<FBAppDelegate>)delegate;
 - (void)closeFBSession;
 
+@property BOOL fbConnection;
+
 @end
 

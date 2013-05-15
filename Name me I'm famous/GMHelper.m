@@ -1,4 +1,4 @@
-//
+		//
 //  GMHelper.m
 //  CelebrityHead
 //
@@ -16,7 +16,9 @@
 #import "nmifGame.h"
 #import "nmifCommand.h"
 #import "nmifHistoricalGame.h"
+#import "PAMHelper.h"
 #include "nmifServerCommands.h"
+#include "mosquitto.h"
 
 @implementation GMHelper
 
@@ -29,6 +31,7 @@
 @synthesize fCelebrityLoaded;
 @synthesize topCelebrities = _topCelebrities;
 @synthesize questionHistory = _questionHistory;
+@synthesize pendingEventsForGameNotYetCreated = _pendingEventsForGameNotYetCreated;
 
 NSString * const K_QUESTION_HISTORY_KEY = @"NMIF.QUESTIONASKED.HISTORY";
 
@@ -80,6 +83,17 @@ static GMHelper * sharedHelper = 0;
 -(void) setQuestionHistory:(NSMutableArray *)questionHistory {
     _questionHistory = questionHistory;
 }
+
+-(NSMutableDictionary*) pendingEventsForGameNotYetCreated {
+    if (_pendingEventsForGameNotYetCreated == nil) {
+        _pendingEventsForGameNotYetCreated = [[NSMutableDictionary alloc] initWithCapacity:1];
+    }
+    return _pendingEventsForGameNotYetCreated;
+}
+-(void) setPendingEventsForGameNotYetCreated:(NSMutableDictionary *)pendingEventsForGameNotYetCreated {
+    _pendingEventsForGameNotYetCreated = pendingEventsForGameNotYetCreated;
+}
+
 -(id) init {
     self = [super init];
     if (self) {
@@ -222,10 +236,11 @@ static GMHelper * sharedHelper = 0;
 -(void) subscribeToNotifications:(id <GMHelperDelegate>)GMDelegate {
     self.delegate = GMDelegate;
     
-    CFReadStreamRef readStream;
-    CFWriteStreamRef writeStream;
+  //  CFReadStreamRef readStream;
+//    CFWriteStreamRef writeStream;
     //89.226.34.6, 5001
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"54.247.53.94",5001, &readStream, &writeStream);
+    // AMAZON: 54.247.53.94
+/*    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"54.247.53.94",5001, &readStream, &writeStream);
     
     inputStream = (__bridge NSInputStream*)readStream;
     outputStream = (__bridge NSOutputStream*)writeStream;
@@ -238,17 +253,25 @@ static GMHelper * sharedHelper = 0;
     
     [inputStream open];
     [outputStream open];
-    
-    [self startNotifications];
+  */
+    mosquittoClient = [[MosquittoClient alloc] initWithClientId:sessionID andCleanSession:NO];
+    [mosquittoClient setDelegate:self];
+    [mosquittoClient setHost:@"54.247.53.94"];
+    [mosquittoClient setPort:5001];
+    [mosquittoClient setWill:[NSString stringWithFormat:@"%@:%@", K_DISCONNECTED, sessionID] toTopic:@"nmif/server" withQos:2 retain:NO];
+
+    [mosquittoClient connect];
 }
 
 -(void) unsubscribeFromNotifications {
-    
-    [inputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [mosquittoClient clearWill];
+/*    [inputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
     [inputStream close];
     [outputStream close];
+ */
+    
 }
 
 #pragma mark - xmlHttpRequest send
@@ -294,7 +317,7 @@ static GMHelper * sharedHelper = 0;
 
 -(void) notifyDelegateOfRequestError:(NSString *)error withUrl:(NSString *)url 
 {
-    if ([url compare:K_NEW_RANDOM_GAME_URL] == NSOrderedSame) {           // account successfully created        
+    if ([url compare:K_NEW_RANDOM_GAME_URL] == NSOrderedSame) {          	 // account successfully created        
         [delegate onNewRandomGameFailed:error];
     }
 }
@@ -302,15 +325,28 @@ static GMHelper * sharedHelper = 0;
 #pragma mark - NSStream commands
 -(void) writeToOutputStream:(NSString*)stringData
 {
-    NSData *data = [[NSData alloc] initWithData:[stringData dataUsingEncoding:NSUTF8StringEncoding]];
-    [outputStream write:[data bytes] maxLength:[data length]];    
+//    NSData *data = [[NSData alloc] initWithData:[stringData data	UsingEncoding:NSUTF8StringEncoding]];
+ //   [outputStream write:[data bytes] maxLength:[data length]];
+    
+    [mosquittoClient publishString:stringData toTopic:@"nmif/server" withQos:2 retain:NO];
 }
 #pragma mark - commands sent to server
--(void) startNotifications {
-    [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@$", K_NOTIFICATION_ON, sessionID]];
+-(void) startNotifications
+{
+//    [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@$", K_NOTIFICATION_ON, sessionID]];
+    NSString *topic = [NSString stringWithFormat:@"nmif/%@", sessionID];
+    NSLog(@"Subscribing to %@", topic);
+    [mosquittoClient subscribe:topic withQos:2];
 }
 
--(void)getCelebrityList {
+-(void) invite:(NSString*)friend withDelegate:(id <GMHelperDelegate>)GMDelegate
+{
+    self.delegate = GMDelegate;
+    [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@:%@$", K_INVITE_FRIEND, sessionID, friend]];
+
+}
+-(void)getCelebrityList
+{
     NSNumber *lastCelebrityID= [[NSNumber alloc] initWithInt:0];
     
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -430,6 +466,13 @@ static GMHelper * sharedHelper = 0;
 {
     nmifGame * gip  = [[nmifGame alloc] init:gameID withOpponent:opponent andCelebrity:celebrityName andToken:([opponentHasToken compare:@"false"] == NSOrderedSame) andCelebrityPickedUpByOpponent:([celebrityPickedUpByOpponent compare:@"true"] == NSOrderedSame) andPackages:packages];
     [[self games] setObject:gip forKey:gameID];
+
+    NSMutableSet *eventsToReplay = [[self pendingEventsForGameNotYetCreated] objectForKey:gameID];
+    
+    for (nmifCommand *e in eventsToReplay) {
+        [gip addPendingEvents:e];
+    }
+
 }
 
 
@@ -596,8 +639,24 @@ static GMHelper * sharedHelper = 0;
     return bPackageUpdated;
 }
 
+-(void)addPendingEvent:(NSString*)eventCommand withParams:(NSArray *)params forGame:(NSString*)gameID
+{
+    nmifGame *theGame = [self.games objectForKey:gameID];
+    if ( theGame != nil) {
+        [ theGame addPendingEvents:eventCommand withParams:params];
+    } else {
+        NSMutableSet *commands = [[self  pendingEventsForGameNotYetCreated] objectForKey:gameID];
+        if (!commands) {
+            commands = [NSMutableSet set];
+            [[self pendingEventsForGameNotYetCreated] setObject:commands forKey:gameID];
+        }
+        [commands addObject:[[nmifCommand alloc] initWithCommand:eventCommand andParams:params]];
+    }
+}
+
+
 #pragma mark - NSStreamDelegate
--(void) stream:(NSStream *)theStream handleEvent:(NSStreamEvent)eventCode
+/*-(void) stream:(NSStream *)theStream handleEvent:(NSStreamEvent)eventCode
 {
     switch (eventCode) {
         case NSStreamEventOpenCompleted:
@@ -613,12 +672,14 @@ static GMHelper * sharedHelper = 0;
                     bool bLastMessageIsComplete = NO;
                     len = [inputStream read:buffer maxLength:sizeof(buffer)];
                     if (len > 0) {
-                        NSString *output;
+                        NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSUTF8StringEncoding];
                         if ([streamBuffer length] > 0) {
-                            output = [streamBuffer stringByAppendingString:[[NSString alloc] initWithBytes:buffer length:len encoding:NSUTF8StringEncoding]];
-                            streamBuffer = @"";
-                        } else {
-                            output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSUTF8StringEncoding];
+                            if (output  != nil) {
+                                output = [streamBuffer stringByAppendingString:output];
+                                streamBuffer = @"";
+                            } else {
+                                NSLog(@"NIL OUTPUT - should not happen !");
+                            }
                         }
                         if (nil != output) {
                             NSLog(@"server said %@", output);
@@ -685,7 +746,7 @@ static GMHelper * sharedHelper = 0;
             break;
     }
 }
-
+*/
 // decode the command received and call the delegate
 -(void) decodeCommand:(NSString*)command withParam1:(NSString*)param1 withParam2:(NSString*)param2 withParam3:(NSString*)param3 withParam4:(NSString*)param4 withParam5:(NSString*)param5 withParam6:(NSString*)param6
 {
@@ -737,8 +798,13 @@ static GMHelper * sharedHelper = 0;
         [self onCommandTopCelebrity:param1 withName:param2 andRole:param3];
     } else if ([command compare:K_NEW_HISTORICAL_GAME] == NSOrderedSame) {
         [self onCommandNewHistoricalGame:param1 withOpponent:param2 andWinnerIsMe:param3 andMyCelebrity:param4 andMyOpponentCelebrity:param5];
+    } else if ([command compare:K_INVITE_FRIEND_ACK] == NSOrderedSame) {
+        [self onCommandInviteAck:param1 withErrorMessage:param2];
+    } else if ([command compare:K_INVITE_RECEIVED] == NSOrderedSame) {
+        [self onCommandInviteReceived:param1];
+    } else if ([command compare:K_ERROR] == NSOrderedSame) {
+        [self onCommandError];
     }
-
 
 }
 
@@ -763,6 +829,9 @@ static GMHelper * sharedHelper = 0;
 -(void) onCommandNewGameInProgress:(NSString*)gameID withOpponent:(NSString*)opponent withToken:(NSString*)token andCelebrityName:(NSString*)celebrityName andCelebrityPickedUpByOpponent:(NSString*)celebrityPickedUpByOpponent andPackages:(NSString*)packages
 {
     [self addGameInProgress:gameID withOpponent:opponent withToken:token andCelebrityName:celebrityName andCelebrityPickedUpByOpponent:celebrityPickedUpByOpponent andPackages:packages];
+    if ([delegate respondsToSelector:@selector(onNewGameInProgress)]) {
+        [delegate onNewGameInProgress];
+    }
 }
 -(void) onCommandNewGameInProgressQuestion:(NSString*)gameID withQuestionID:(NSString*)questionID withQuestionAsked:(NSString*)questionAsked andAnswer:(NSString*)answer
 {
@@ -772,7 +841,8 @@ static GMHelper * sharedHelper = 0;
 
 -(void) onCommandNewGameInProgressEnd
 {
-    self.fGamesInProgressLoaded = true;
+    [[GMHelper sharedInstance] setFGamesInProgressLoaded:true];
+
     if ([delegate respondsToSelector:@selector(onGamesInProgressLoaded)]) {
         [delegate onGamesInProgressLoaded];
     }
@@ -783,7 +853,7 @@ static GMHelper * sharedHelper = 0;
 }
 -(void) onCommandCelebrityListEnd
 {
-    self.fCelebrityLoaded = true;
+    [[GMHelper sharedInstance] setFCelebrityLoaded:true];
     if ([delegate respondsToSelector:@selector(onCelebrityListEnd)]) {
         [delegate onCelebrityListEnd];
     }
@@ -791,7 +861,7 @@ static GMHelper * sharedHelper = 0;
 -(void) onCommandTopCelebrity:(NSString*)position withName:(NSString*)name andRole:(NSString*)role
 {
     nmifCelebrity *c = [[nmifCelebrity alloc] initWithName:name andRole:role];   
-    [self.topCelebrities insertObject:c atIndex:[position intValue]];
+    [self.topCelebrities addObject:c];
 }
 
 -(void) onCommandPickupCelebrityAck:(NSString*)gameID withCelebrity:(NSString*)celebrity
@@ -803,7 +873,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onPickupCelebritySuccess:celebrity];
     } else {
         NSArray *params = [[NSArray alloc] initWithObjects:gameID, celebrity, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_CELEBRITY_PICKED_UP_BY_ME withParams:params];
+        [self addPendingEvent:K_CELEBRITY_PICKED_UP_BY_ME withParams:params forGame:gameID];
     }
 }
 -(void) onCommandPickupCelebrityError:(NSString*)gameID withError:(NSString*)error
@@ -819,7 +889,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onCelebrityPickedUpByOpponent:celebrity];
     } else {
         NSArray *params = [[NSArray alloc] initWithObjects:gameID, celebrity, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_CELEBRITY_PICKED_UP_BY_OPPONENT withParams:params];
+        [self addPendingEvent:K_CELEBRITY_PICKED_UP_BY_OPPONENT withParams:params forGame:gameID];
     }
 }
 -(void) onCommandAskQuestionAck:(NSString*)gameID withQuestionID:(NSString*)questionID andQuestion:(NSString*)question
@@ -833,7 +903,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onAskQuestionError:error];
     } else {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, error, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_ASK_QUESTION_ERROR withParams:params];
+        [self addPendingEvent:K_ASK_QUESTION_ERROR withParams:params forGame:gameID];
     }
 }
 -(void) onCommandQuestionAsked:(NSString*)gameID withQuestionID:(NSString*)questionID andQuestion:(NSString*)question
@@ -842,7 +912,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onQuestionAsked:questionID withQuestion:question];
     } else  {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, questionID, question, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_QUESTION_ASKED withParams:params];
+        [self addPendingEvent:K_QUESTION_ASKED withParams:params forGame:gameID];
     }
 }
 -(void) onCommandQuestionAnswered:(NSString*)gameID withQuestionID:(NSString*)questionID andAnswer:(NSString*)answer
@@ -852,7 +922,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onQuestionAnswered:[questionID stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] withAnswer:answer];
     } else {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, questionID, answer, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_QUESTION_ANSWERED withParams:params];
+        [self addPendingEvent:K_QUESTION_ANSWERED withParams:params forGame:gameID];
     }
 
     
@@ -863,7 +933,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onQuestionAnsweredAck];
     } else {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_QUESTION_ANSWERED_ACK withParams:params];
+        [self addPendingEvent:K_QUESTION_ANSWERED_ACK withParams:params forGame:gameID];
     }
 }
 -(void) onCommandCelebritySubmitted:(NSString*)gameID withCelebrity:(NSString*)celebrity andStatus:(NSString*)status
@@ -872,7 +942,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onCelebritySubmitted:celebrity withStatus:status];
     } else {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, celebrity, status, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_CELEBRITY_SUBMITTED withParams:params];
+        [self addPendingEvent:K_CELEBRITY_SUBMITTED withParams:params forGame:gameID];
     }
 }
 -(void) onCommandCelebritySubmittedByOpponent:(NSString*)gameID withOpponent:(NSString*)opponent andStatus:(NSString*)status
@@ -881,7 +951,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onCelebritySubmittedByOpponent:opponent withStatus:status];
     } else {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, opponent, status, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_CELEBRITY_SUBMITTED_BY_OPPONENT withParams:params];
+        [self addPendingEvent:K_CELEBRITY_SUBMITTED_BY_OPPONENT withParams:params forGame:gameID];
     }
 }
 -(void) onCommandOpponentStatusUpdated:(NSString*)gameID withStatus:(NSString*)status
@@ -902,7 +972,7 @@ static GMHelper * sharedHelper = 0;
         [delegate onNewTurn:fMyTurn];
     } else {
         NSArray * params = [[NSArray alloc] initWithObjects:gameID, myTurn, nil];
-        [[self.games objectForKey:gameID] addPendingEvents:K_NEW_TURN withParams:params];
+        [self addPendingEvent:K_NEW_TURN withParams:params forGame:gameID];
     }
 }
 
@@ -915,7 +985,7 @@ static GMHelper * sharedHelper = 0;
             [delegate onGameLost:celebrity];
         }
     } else {
-        [[self.games objectForKey:gameID] addPendingEvents:K_GAME_OVER withParams: [[NSArray alloc] initWithObjects:gameID, gameResult, celebrity, nil]];
+        [self addPendingEvent:K_GAME_OVER withParams: [[NSArray alloc] initWithObjects:gameID, gameResult, celebrity, nil] forGame:gameID];
     }
 }
 
@@ -930,7 +1000,7 @@ static GMHelper * sharedHelper = 0;
         UIViewController<GMRestoreViewDelegate> *VC = (UIViewController<GMRestoreViewDelegate>*)[storyBoard instantiateViewControllerWithIdentifier:@"gameInProgressViewID"];
         [delegate onOpponentQuit:VC];
     } else {
-        [[self.games objectForKey:gameID] addPendingEvents:K_OPPONENT_QUIT_GAME withParams: [[NSArray alloc] initWithObjects:gameID, nil]];
+        [self addPendingEvent:K_OPPONENT_QUIT_GAME withParams: [[NSArray alloc] initWithObjects:gameID, nil] forGame:gameID];
     }
 }
 
@@ -949,6 +1019,31 @@ static GMHelper * sharedHelper = 0;
     [[self historicalGames] addObject:theHistoricalGame];
 }
 
+-(void) onCommandInviteAck:(NSString*)success withErrorMessage:(NSString*)error
+{
+    if ([success compare:@"1"] == NSOrderedSame) {
+        if ([delegate respondsToSelector:@selector(onInviteSuccess)]) {
+            [delegate onInviteSuccess];
+        }
+    } else if ([delegate respondsToSelector:@selector(onInviteFailed:)]) {
+        [delegate onInviteFailed:error];
+    } 
+}
+
+-(void) onCommandInviteReceived:(NSString*) opponent
+{
+    NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"INVITE_RECEIVED", nil), opponent];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NMIF", nil) message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+-(void) onCommandError
+{
+    NSString *msg = NSLocalizedString(@"ERROR_OCCURED", nil);
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NMIF", nil) message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [self quitGame];
+}
 #pragma mark - active game interaction
 -(void) celebrityWasPickedUpByMe {
     [[self.games objectForKey:activeGameID] setCelebrityPickedUpByMe:true];
@@ -1017,4 +1112,69 @@ static GMHelper * sharedHelper = 0;
     }
 }
 
+#pragma mosquittoClientDelegate
+- (void) didConnect: (NSUInteger)code
+{	
+    [self startNotifications];
+}
+- (void) didDisconnect
+{
+    
+}
+- (void) didPublish: (NSUInteger)messageId
+{
+    NSLog(@"DidPublish %d", messageId);
+}
+
+- (void) didReceiveMessage: (NSString*)payload forTopic:(NSString*)topic
+{
+    NSLog(@"%@ => %@", topic, payload);
+
+    if (payload != nil) {
+        NSArray	*outputMessages = [payload componentsSeparatedByString:@"$"];
+        int nbMessagesToProcess = [outputMessages count];
+        for (int i=0; i < nbMessagesToProcess; i++) {
+            NSString* message = [outputMessages objectAtIndex:i];
+            NSLog(@"processing message %@", message);
+            NSArray	*outputToken = [message componentsSeparatedByString:@":"];
+            if ([outputToken count] >= 2) {
+                NSString* param2 = nil;
+                NSString* param3 = nil;
+                NSString* param4 = nil;
+                NSString* param5 = nil;
+                NSString* param6 = nil;
+            
+                if ([outputToken count] >= 3) {
+                    param2 = [[outputToken objectAtIndex:K_STREAM_PARAM_IDX+1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    if ([outputToken count] >= 4) {
+                        param3 = [[outputToken objectAtIndex:K_STREAM_PARAM_IDX+2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                        if ([outputToken count] >= 5) {
+                            param4 = [[outputToken objectAtIndex:K_STREAM_PARAM_IDX+3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                            if ([outputToken count] >= 6) {
+                                param5 = [[outputToken objectAtIndex:K_STREAM_PARAM_IDX+4] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                                if ([outputToken count] >= 7) {
+                                    param6 = [[outputToken objectAtIndex:K_STREAM_PARAM_IDX+5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                                }
+                            }
+                        }
+                    
+                    }
+                }
+            
+                [self decodeCommand:[[outputToken objectAtIndex:K_STREAM_COMMAND_IDX] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                         withParam1:[[outputToken objectAtIndex:K_STREAM_PARAM_IDX] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+                         withParam2:param2 withParam3:param3 withParam4:param4 withParam5:param5 withParam6:param6];
+            }
+        }
+    }
+}
+- (void) didSubscribe: (NSUInteger)messageId grantedQos:(NSArray*)qos
+{
+    NSLog(@"DidSubscribe %d", messageId);
+    [self onCommandNotificationAck]; 
+}
+- (void) didUnsubscribe: (NSUInteger)messageId
+{
+    
+}
 @end

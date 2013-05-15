@@ -43,6 +43,8 @@ extern NSString * const K_PING_PLAYER_ACCOUNT_URL;
 @property (nonatomic, retain) NSString *sessionID;
 @property (nonatomic, retain) NSString *accountType;
 
+@property (nonatomic, retain) NSString* deviceToken;
+
 
 // methods
 - (void) createAccount:(NSString*)login withPassword:(NSString*)password withFullName:(NSString*)fullName withEMail:(NSString*)email withDelegate:(id <PAMHelperDelegate>)delegate;

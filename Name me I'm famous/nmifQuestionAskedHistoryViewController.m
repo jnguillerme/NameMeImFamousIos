@@ -93,10 +93,10 @@
 -(UITableViewCell*)tableView:(UITableView*)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    nmifUITableViewCellWithSwipe *cell = [theTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell = [[nmifUITableViewCellWithSwipe alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier andDelegate:self];
         cell.backgroundColor = [UIColor colorWithRed:0.05f green:0.48f blue:0.58f alpha:1];
         
         cell.textLabel.font = [UIFont systemFontOfSize:14];
@@ -109,6 +109,9 @@
         cell.textLabel.text = [[[GMHelper sharedInstance] questionHistory] objectAtIndex:[indexPath row]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+    cell.tag = [indexPath row];
+    
     return cell;
 }
 
@@ -117,6 +120,16 @@
     if ([segue.identifier isEqualToString:@"questionFromQuestionAskedHistory"] && [segue.destinationViewController respondsToSelector:@selector(setQuestionAsked:)] ) {
         [segue.destinationViewController setQuestionAsked:questionSelected];
     }
+}
+
+#pragma mark delegate nmifUITableViewCellWithSwipeDelegate
+-(void)onCellSwipeLeft:(int)row
+{
+    [[[GMHelper sharedInstance] questionHistory] removeObjectAtIndex:row];
+    [self.tvQuestionAsked reloadData];
+}
+-(void)onCellSwipeRight:(int)row
+{
 }
 @end
 

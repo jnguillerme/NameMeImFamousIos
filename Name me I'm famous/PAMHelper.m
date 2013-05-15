@@ -14,11 +14,11 @@
 
 @implementation PAMHelper
 
-NSString * const K_LOGIN_KEY = @"KompLoginKey";
-NSString * const K_PASSWORD_KEY = @"KompPasswordKey";
-
+NSString * const K_LOGIN_KEY = @"NMIF.LOGIN.KEY";
+NSString * const K_PASSWORD_KEY = @"NMIF.PASSWORD.KEY";
+NSString * const K_DEVICE_TOKEN_KEY = @"NMIF.DEVICETOKEN.KEY";
 //89.226.34.6
-
+// AMZON 54.247.53.94
 NSString * const K_CREATE_PLAYER_ACCOUNT_URL = @"http://54.247.53.94:8081/createPlayerAccount";
 NSString * const K_LOGIN_PLAYER_ACCOUNT_URL  = @"http://54.247.53.94:8081/loginPlayerAccount";
 NSString * const K_LOGOUT_PLAYER_ACCOUNT_URL  = @"http://54.247.53.94:8081/logoutPlayerAccount";
@@ -27,6 +27,7 @@ NSString * const K_PING_PLAYER_ACCOUNT_URL  = @"http://54.247.53.94:8081/pingPla
 
 @synthesize delegate;
 @synthesize sessionID;
+@synthesize deviceToken = _deviceToken;
 
 static PAMHelper * sharedHelper = 0;
 
@@ -35,6 +36,25 @@ static PAMHelper * sharedHelper = 0;
         sharedHelper = [[PAMHelper alloc] init];
     }
     return sharedHelper;
+}
+
+-(NSString*) deviceToken
+{
+    if (_deviceToken == nil) {
+        NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        return [standardUserDefaults objectForKey:K_DEVICE_TOKEN_KEY];
+    } else {
+        return _deviceToken;
+    }
+}
+
+-(void) setDeviceToken:(NSString *)deviceToken
+{
+    _deviceToken = deviceToken;
+    
+    NSUserDefaults* standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setObject:_deviceToken forKey:K_DEVICE_TOKEN_KEY];
+    [standardUserDefaults synchronize];
 }
 
 -(id) init {
@@ -75,7 +95,8 @@ static PAMHelper * sharedHelper = 0;
         [request setPostValue:login  forKey:@"login"];
         [request setPostValue:password  forKey:@"password"];
         [request setPostValue:accountType  forKey:@"accountType"];
-    
+        [request setPostValue:[self deviceToken] forKey:@"deviceToken"];
+	    
         self.accountType = accountType;
         self.delegate = PAMDelegate;
         
@@ -129,7 +150,7 @@ static PAMHelper * sharedHelper = 0;
     NSDictionary *responseDict = [responseString JSONValue];
     NSString *success = [responseDict objectForKey:@"success"];
     NSString * url = [[request url] absoluteString]; 
-    
+    NSLog(@"xmlHttpRequest %@ replied %@", url, responseString);
     if ([success compare:@"0"] == NSOrderedSame) {
         NSString *errorMsg = [responseDict objectForKey:@"error"]; 
         [self notifyDelegateOfRequestError:errorMsg withUrl:url];
@@ -173,14 +194,19 @@ static PAMHelper * sharedHelper = 0;
     NSString * errorMessage =  [NSString stringWithFormat:@"LOGIN_FAILED_%@", error];
     return NSLocalizedString(errorMessage, nil);
 }
+-(NSString*) decodeAccountCreationError:(NSString*)error {
+    NSString * errorMessage =  [NSString stringWithFormat:@"ACCOUNT_CREATION_FAILED_%@", error];
+    return NSLocalizedString(errorMessage, nil);
+}
 -(void) notifyDelegateOfRequestError:(NSString *)error withUrl:(NSString *)url 
 {
     if ([url compare:K_CREATE_PLAYER_ACCOUNT_URL] == NSOrderedSame) {           // account successfully created        
-        [delegate onAccountCreationFailed:error];
+        [delegate onAccountCreationFailed:[self decodeAccountCreationError:error]];
     } else if ([url compare:K_LOGIN_PLAYER_ACCOUNT_URL] == NSOrderedSame) {
+        fConnectionInProgress = false;
         [delegate onLoginFailed:[self  decodeLoginError:error]];
     } else if ([url compare:K_LOGOUT_PLAYER_ACCOUNT_URL] == NSOrderedSame) {
-        [delegate onLogoutFailed:error];            
+        [delegate onLogoutSuccess];     // doesn't make sense to have logout fail - so tell the application the logout was successful
     } else if ([url compare:K_FORGOT_PASSWORD_URL] == NSOrderedSame) {
         [delegate onPasswordResetFailed:error];
     }

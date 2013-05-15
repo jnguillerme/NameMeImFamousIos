@@ -36,6 +36,12 @@
     [delegate newGame];
 }
 
+-(void)inviteFriend
+{
+    [delegate inviteFriend];
+}
+
+
 -(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     return [menu count];
 }

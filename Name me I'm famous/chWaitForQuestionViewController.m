@@ -59,6 +59,7 @@ NSString * const K_QUESTION_ID_TO_ANSWER_KEY = @"NMIF.ANSWERQUESTIONVIEWID.QUEST
     
     [[GMHelper sharedInstance] setDelegate:self];
     
+    self.lblOpponentCelebrity.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_CELEBRITY", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentCelebrity]];
     self.lblOpponentStatus.text = [NSString stringWithFormat:NSLocalizedString(@"OPPONENT_STATUS", nil), [[GMHelper sharedInstance] opponentName], [[GMHelper sharedInstance] opponentStatus]];
     
     [[GMHelper sharedInstance] saveGameInProgress:@"answerQuestionViewID"];
@@ -91,6 +92,7 @@ NSString * const K_QUESTION_ID_TO_ANSWER_KEY = @"NMIF.ANSWERQUESTIONVIEWID.QUEST
     [self setLblOpponentStatus:nil];
     [self setTvMenu:nil];
     [self setBtnParam:nil];
+    [self setLblOpponentCelebrity:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

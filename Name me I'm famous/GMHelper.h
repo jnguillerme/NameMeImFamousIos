@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "nmifQuestion.h"
 #import "Role.h"
+#import "MosquittoClient.h"
 
 @protocol GMRestoreViewDelegate
 - (void) restorePrivateData;
@@ -22,6 +23,7 @@
 -(void) onNewRandomGameSuccess;
 -(void) onNewRandomGameFailed:(NSString*)error;
 -(void) onNewRandomGame;
+-(void) onNewGameInProgress;
 -(void) onPickupCelebritySuccess:(NSString*)celebrity;
 -(void) onPickupCelebrityError:(NSString*)error;
 -(void) onCelebrityPickedUpByOpponent:(NSString*)celebrity;
@@ -42,15 +44,17 @@
 -(void) onGameWon;
 -(void) onGameLost:(NSString*)celebrity;
 -(void) onOpponentQuit:(UIViewController<GMRestoreViewDelegate> *)VC;
-;
+-(void) onInviteSuccess;
+-(void) onInviteFailed:(NSString*)error;
+
 
 @end
 
-@interface GMHelper : NSObject<NSStreamDelegate> {
+@interface GMHelper : NSObject</*NSStreamDelegate,*/ MosquittoClientDelegate> {
     id <GMHelperDelegate> delegate;
     NSString *sessionID;
-    NSInputStream *inputStream;
-    NSOutputStream *outputStream;
+//    NSInputStream *inputStream;
+ //   NSOutputStream *outputStream;
     NSManagedObjectContext *managedObjectContext;
     NSManagedObjectModel *managedObjectModel;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -58,7 +62,10 @@
     NSString * activeGameID;
     
     NSString * streamBuffer;
+    
+    MosquittoClient *mosquittoClient;
 }
+
 + (GMHelper*) sharedInstance;
 
 @property (nonatomic, retain) id <GMHelperDelegate> delegate;
@@ -71,6 +78,7 @@
 @property (nonatomic, retain) NSMutableArray *questionHistory;
 
 @property (nonatomic, retain) NSMutableArray *topCelebrities;
+@property (nonatomic, retain) NSMutableDictionary *pendingEventsForGameNotYetCreated;
 
 // methods
 -(void) newRandomGame:(id <GMHelperDelegate>)GMDelegate;
@@ -85,6 +93,7 @@
 -(void) replayPendingEvents;
 -(void) quitGame;
 -(void) gameOver;
+-(void) invite:(NSString*)friend withDelegate:(id <GMHelperDelegate>)GMDelegate;
 
 -(void) subscribeToNotifications:(id<GMHelperDelegate>)GMDelegate;
 -(void) unsubscribeFromNotifications;

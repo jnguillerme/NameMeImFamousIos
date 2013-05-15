@@ -10,7 +10,9 @@
 
 @protocol nmifMenuTableViewDelegate
 -(void) newGame;
+-(void) inviteFriend;
 @end
+
 @interface nmifMenuTableView : NSObject<UITableViewDelegate, UITableViewDataSource> {
     id <nmifMenuTableViewDelegate> delegate;
     NSMutableArray *menu;

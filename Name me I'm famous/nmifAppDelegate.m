@@ -14,13 +14,14 @@
 @implementation nmifAppDelegate
 
 @synthesize window = _window;
-
+@synthesize fbConnection;
 
 NSString *const FBSessionStateChangedNotification =@"335852886514062:FBSessionStateChangedNotification";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    fbConnection = NO;
     
     // let the device know we want to receive push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)];
@@ -112,7 +113,8 @@ NSString *const FBSessionStateChangedNotification =@"335852886514062:FBSessionSt
         case FBSessionStateOpen:
             if (!error) {
                 /// should DEFINE a FBDelegate within nmifAppDelegate for view controller to implement
-                
+                fbConnection = YES;
+
                 // get user name
                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser>*user, NSError* error) {
                     if (!error) {
@@ -176,9 +178,15 @@ NSString *const FBSessionStateChangedNotification =@"335852886514062:FBSessionSt
     }
 }
 
--(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+-(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)theToken
 {
-    NSLog(@"My token is %@", deviceToken);
+    NSLog(@"My token is %@", theToken);
+    
+    NSString *deviceToken = [theToken description];
+    deviceToken = [deviceToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [[PAMHelper sharedInstance] setDeviceToken:deviceToken];
 }
 
 -(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

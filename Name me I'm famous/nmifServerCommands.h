@@ -10,6 +10,7 @@
 #define Name_me_I_m_famous_nmifServerCommands_h
 
 //89.226.34.6
+// AMAZON: 54.247.53.94
 NSString * const K_NEW_RANDOM_GAME_URL = @"http://54.247.53.94:8081/newRandomGame";
 
 // commands received on the stream
@@ -53,6 +54,11 @@ NSString * const K_OPPONENT_QUIT_GAME = @"opponentquit";
 NSString * const K_NEW_PACKAGE = @"newpackage";
 NSString * const K_UPDATE_PACKAGE = @"updatepackage";
 NSString * const K_CELEBRITY_LIST_END = @"celebritylistend";
+NSString * const K_INVITE_FRIEND = @"invite";
+NSString * const K_INVITE_FRIEND_ACK = @"inviteack";
+NSString * const K_INVITE_RECEIVED = @"newinvite";
+NSString * const K_DISCONNECTED = @"disconnected";
+NSString * const K_ERROR = @"error";
 
 NSUInteger const K_STREAM_COMMAND_IDX = 0;
 NSUInteger const K_STREAM_PARAM_IDX = 1;

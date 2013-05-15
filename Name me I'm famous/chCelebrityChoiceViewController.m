@@ -151,10 +151,12 @@
 {
     [self.view endEditing:YES];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = [NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_OPPONENT_CHOICE", nil), [[GMHelper sharedInstance] opponentName]];
+    if (_lblCelebrityName.text.length > 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = [NSString stringWithFormat:NSLocalizedString(@"WAITING_FOR_OPPONENT_CHOICE", nil), [[GMHelper sharedInstance] opponentName]];
     
-    [[GMHelper sharedInstance] pickupCelebrity:_lblCelebrityName.text withDelegate:self];
+        [[GMHelper sharedInstance] pickupCelebrity:_lblCelebrityName.text withDelegate:self];
+    }
     
 }
 

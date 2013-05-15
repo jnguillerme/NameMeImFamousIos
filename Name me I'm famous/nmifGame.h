@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "nmifCommand.h"
 
 @interface nmifGame : NSObject {
     NSMutableArray* pendingEvents;
@@ -25,6 +26,7 @@
 -(id) init:(NSString*)ID withOpponent:(NSString*)opponent andPackages:(NSString*)packages;
 -(id) init:(NSString*)ID withOpponent:(NSString *)opponent andCelebrity:(NSString*)celebrity andToken:(BOOL)hasToken andCelebrityPickedUpByOpponent:(BOOL)celebrityPickedUpByOpponent andPackages:(NSString*)packages;
 -(void) addPendingEvents:(NSString*)command withParams:(NSArray*)params;
+-(void) addPendingEvents:(nmifCommand*)command;
 -(NSArray*) getPendingEvents;
 -(void) removePendingEvents;
 
