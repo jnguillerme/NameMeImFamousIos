@@ -39,6 +39,13 @@
     id <nmifMenuParametersTableViewDelegate> parametersDelegate = (id<nmifMenuParametersTableViewDelegate>)delegate;
     [parametersDelegate onGiveUpGame];
 }
+
+-(void)displayRules
+{
+    id <nmifMenuParametersTableViewDelegate> parametersDelegate = (id<nmifMenuParametersTableViewDelegate>)delegate;
+    [parametersDelegate displayRules];
+}
+
 -(void)onDisconnect
 {
     id <nmifMenuParametersTableViewDelegate> parametersDelegate = (id<nmifMenuParametersTableViewDelegate>)delegate;

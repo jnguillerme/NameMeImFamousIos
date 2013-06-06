@@ -10,6 +10,7 @@
 
 @protocol nmifMenuCelebritySubmitTableViewDelegate
 -(void) onCelebritySubmit;
+-(void) onShowQuestionHistory;
 @end
 
 @interface nmifMenuSubmitCelebrityTableView : nmifMenuTableView

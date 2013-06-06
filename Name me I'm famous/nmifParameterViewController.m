@@ -39,6 +39,7 @@
     self.tvMenu.delegate = menuTableView;
     self.tvMenu.dataSource = menuTableView;
     
+    [menuTableView addMenuItem:NSLocalizedString(@"RULES", nil) withDescription:NSLocalizedString(@"RULES_DESCRIPTION", nil) andImage:@"rules.png" andAction:@selector(displayRules) andDelegate:theDelegate];
     [menuTableView addMenuItem:NSLocalizedString(@"PACKAGES", nil) withDescription:NSLocalizedString(@"PACKAGES_DESCRIPTION", nil) andImage:@"packages.png" andAction:@selector(onPackageManagement) andDelegate:theDelegate];
     [menuTableView addMenuItem:NSLocalizedString(@"GAMEINPROGRESS", nil) withDescription:NSLocalizedString(@"GAMEINPROGRESS_DESCRIPTION", nil) andImage:@"gameinprogress.png" andAction:@selector(onGameInProgress) andDelegate:theDelegate];    
     [menuTableView addMenuItem:NSLocalizedString(@"MY_GAMES", nil) withDescription:NSLocalizedString(@"MY_GAMES_DESCRIPTION", nil) andImage:@"mygameshistory.png" andAction:@selector(onGameHistory) andDelegate:theDelegate];
@@ -85,6 +86,11 @@
 -(void) onTopCelebrities
 {
     [self performSegueWithIdentifier:@"topCelebritiesFromParams" sender:self];
+}
+
+-(void)displayRules
+{
+    [self performSegueWithIdentifier:@"displayRulesFromParams" sender:self];
 }
 -(void) onGiveUpGame
 {

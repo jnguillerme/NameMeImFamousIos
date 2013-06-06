@@ -114,6 +114,8 @@
 		4E95DDB916F860B600772A22 /* nmifQuestionAskedHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E95DDB816F860B600772A22 /* nmifQuestionAskedHistoryViewController.m */; };
 		4E9776D1173C340500F2C8ED /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4E9776D0173C340500F2C8ED /* FacebookSDKResources.bundle */; };
 		4E97F18F170483530096F34F /* nmifUITableViewCellWithSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97F18E170483520096F34F /* nmifUITableViewCellWithSwipe.m */; };
+		4E9888FF174B74700067B7C6 /* rules.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9888FE174B74700067B7C6 /* rules.png */; };
+		4E988902174B7BC70067B7C6 /* nmifRulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E988901174B7BC60067B7C6 /* nmifRulesViewController.m */; };
 		4E98B9B916E9385000A04A32 /* nmifUITableViewCellPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98B9B816E9385000A04A32 /* nmifUITableViewCellPackage.m */; };
 		4E98B9BC16E94D2900A04A32 /* nmifMenuSubmitCelebrityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E98B9BB16E94D2900A04A32 /* nmifMenuSubmitCelebrityTableView.m */; };
 		4E99294A16DB67D200A8B873 /* nmifGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E99294916DB67D200A8B873 /* nmifGameItem.m */; };
@@ -138,6 +140,8 @@
 		4E9931AD16EE4D5A003B7E9F /* quitGame.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9931A516EE4D58003B7E9F /* quitGame.png */; };
 		4E9931AE16EE4D5A003B7E9F /* resumegame.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9931A616EE4D59003B7E9F /* resumegame.png */; };
 		4E9931AF16EE4D5A003B7E9F /* yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9931A716EE4D59003B7E9F /* yes.png */; };
+		4E9973D817612EF900C47C54 /* rules.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E9973D717612EF900C47C54 /* rules.txt */; };
+		4E9973DA1761325B00C47C54 /* advices.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E9973D91761325B00C47C54 /* advices.txt */; };
 		4E9AF71016524B86004773A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9AF70F16524B86004773A1 /* Default.png */; };
 		4E9F331D16DFF6DD000BB15E /* nmifGameInProgressTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F331C16DFF6DD000BB15E /* nmifGameInProgressTableView.m */; };
 		4E9F332016DFFA44000BB15E /* nmifMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F331F16DFFA44000BB15E /* nmifMenuTableView.m */; };
@@ -333,6 +337,9 @@
 		4E9776D0173C340500F2C8ED /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		4E97F18D170483520096F34F /* nmifUITableViewCellWithSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifUITableViewCellWithSwipe.h; sourceTree = "<group>"; };
 		4E97F18E170483520096F34F /* nmifUITableViewCellWithSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifUITableViewCellWithSwipe.m; sourceTree = "<group>"; };
+		4E9888FE174B74700067B7C6 /* rules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rules.png; path = images/rules.png; sourceTree = "<group>"; };
+		4E988900174B7BC50067B7C6 /* nmifRulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifRulesViewController.h; sourceTree = "<group>"; };
+		4E988901174B7BC60067B7C6 /* nmifRulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifRulesViewController.m; sourceTree = "<group>"; };
 		4E98B9B716E9385000A04A32 /* nmifUITableViewCellPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifUITableViewCellPackage.h; sourceTree = "<group>"; };
 		4E98B9B816E9385000A04A32 /* nmifUITableViewCellPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifUITableViewCellPackage.m; sourceTree = "<group>"; };
 		4E98B9BA16E94D2800A04A32 /* nmifMenuSubmitCelebrityTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifMenuSubmitCelebrityTableView.h; sourceTree = "<group>"; };
@@ -364,6 +371,8 @@
 		4E9931A516EE4D58003B7E9F /* quitGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quitGame.png; path = images/quitGame.png; sourceTree = "<group>"; };
 		4E9931A616EE4D59003B7E9F /* resumegame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = resumegame.png; path = images/resumegame.png; sourceTree = "<group>"; };
 		4E9931A716EE4D59003B7E9F /* yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yes.png; path = images/yes.png; sourceTree = "<group>"; };
+		4E9973D717612EF900C47C54 /* rules.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rules.txt; sourceTree = "<group>"; };
+		4E9973D91761325B00C47C54 /* advices.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = advices.txt; sourceTree = "<group>"; };
 		4E9AF70F16524B86004773A1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		4E9F331B16DFF6DC000BB15E /* nmifGameInProgressTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifGameInProgressTableView.h; sourceTree = "<group>"; };
 		4E9F331C16DFF6DD000BB15E /* nmifGameInProgressTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifGameInProgressTableView.m; sourceTree = "<group>"; };
@@ -509,6 +518,7 @@
 		4E059DA516514CE900A17E38 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4E9888FE174B74700067B7C6 /* rules.png */,
 				4E8DCBC716FF6A9900950F21 /* connect.png */,
 				4E8DCBC516FF6A8500950F21 /* invite.png */,
 				4E93C98316FEEDA300B59A15 /* inviteFriend.png */,
@@ -695,6 +705,8 @@
 				4E95DDB816F860B600772A22 /* nmifQuestionAskedHistoryViewController.m */,
 				4E93C98516FEF1C400B59A15 /* nmifInviteFriendViewController.h */,
 				4E93C98616FEF1C500B59A15 /* nmifInviteFriendViewController.m */,
+				4E988900174B7BC50067B7C6 /* nmifRulesViewController.h */,
+				4E988901174B7BC60067B7C6 /* nmifRulesViewController.m */,
 			);
 			name = viewController;
 			sourceTree = "<group>";
@@ -780,6 +792,8 @@
 			children = (
 				4E9F3AE516BFC2BB0030C62D /* nmifModel.xcdatamodeld */,
 				4EDB010516B81D7000C68029 /* Name me I'm famous.entitlements */,
+				4E9973D717612EF900C47C54 /* rules.txt */,
+				4E9973D91761325B00C47C54 /* advices.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -886,6 +900,9 @@
 				4E8DCBC616FF6A8500950F21 /* invite.png in Resources */,
 				4E8DCBC816FF6A9900950F21 /* connect.png in Resources */,
 				4E9776D1173C340500F2C8ED /* FacebookSDKResources.bundle in Resources */,
+				4E9888FF174B74700067B7C6 /* rules.png in Resources */,
+				4E9973D817612EF900C47C54 /* rules.txt in Resources */,
+				4E9973DA1761325B00C47C54 /* advices.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +988,7 @@
 				4E97F18F170483530096F34F /* nmifUITableViewCellWithSwipe.m in Sources */,
 				4E8DD3E1172591B800FEB73F /* MosquittoClient.m in Sources */,
 				4E8DD3E2172591B800FEB73F /* MosquittoMessage.m in Sources */,
+				4E988902174B7BC70067B7C6 /* nmifRulesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

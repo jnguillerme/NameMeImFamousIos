@@ -141,3 +141,5 @@
 "INVITE_RECEIVED" = "Invite received from %@. Go to game in progres screen to start the game";
 "OPPONENT_CELEBRITY" = "%@ must find %@";
 "ERROR_OCCURED" = "An error occured. The game will end";
+"RULES" = "Rules";
+"RULES_DESCRIPTION" = "Display game rules";

@@ -42,6 +42,7 @@
     [menuTableView addMenuItem:NSLocalizedString(@"RANDOM_GAME", nil) withDescription:NSLocalizedString(@"RANDOM_GAME_DESCRIPTION", nil) andImage:@"newRandomGame.png" andAction:@selector(newGame) andDelegate:self];
     [menuTableView addMenuItem:NSLocalizedString(@"INVITE_FRIEND", nil) withDescription:NSLocalizedString(@"INVITE_FRIEND_DESCRIPTION", nil) andImage:@"inviteFriend.png" andAction:@selector(inviteFriend) andDelegate:self];
 
+
     [self.tvMenu reloadData];
 
     // Game in Progress tableView
@@ -112,6 +113,7 @@
 {
     [self performSegueWithIdentifier:@"inviteFriendFromGameInProgress" sender:self];
 }
+
 #pragma mark delegate nmifGameInPogressTableViewDelegate
 -(void) showQuestionHistory:(NSString*)gameID
 {

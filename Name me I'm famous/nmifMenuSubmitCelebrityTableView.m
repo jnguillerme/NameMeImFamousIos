@@ -15,4 +15,11 @@
     id <nmifMenuCelebritySubmitTableViewDelegate> celebrityChoiceDelegate = (id<nmifMenuCelebritySubmitTableViewDelegate>)delegate;
     [celebrityChoiceDelegate onCelebritySubmit];
 }
+
+-(void) onShowQuestionHistory
+{
+    id <nmifMenuCelebritySubmitTableViewDelegate> celebrityChoiceDelegate = (id<nmifMenuCelebritySubmitTableViewDelegate>)delegate;
+    [celebrityChoiceDelegate onShowQuestionHistory];
+}
+
 @end

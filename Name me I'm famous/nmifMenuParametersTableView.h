@@ -14,6 +14,7 @@
 -(void) onGameHistory;
 -(void) onTopCelebrities;
 -(void) onGiveUpGame;
+-(void) displayRules;
 -(void) onDisconnect;
 @end
 

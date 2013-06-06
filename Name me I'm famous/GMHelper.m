@@ -258,7 +258,7 @@ static GMHelper * sharedHelper = 0;
     [mosquittoClient setDelegate:self];
     [mosquittoClient setHost:@"54.247.53.94"];
     [mosquittoClient setPort:5001];
-    [mosquittoClient setWill:[NSString stringWithFormat:@"%@:%@", K_DISCONNECTED, sessionID] toTopic:@"nmif/server" withQos:2 retain:NO];
+    [mosquittoClient setWill:[NSString stringWithFormat:@"%@:%@", K_DISCONNECTED, sessionID] toTopic:@"nmif/server" withQos:1 retain:NO];
 
     [mosquittoClient connect];
 }
@@ -327,8 +327,9 @@ static GMHelper * sharedHelper = 0;
 {
 //    NSData *data = [[NSData alloc] initWithData:[stringData data	UsingEncoding:NSUTF8StringEncoding]];
  //   [outputStream write:[data bytes] maxLength:[data length]];
+    int mId = [[[PAMHelper sharedInstance] sessionID] intValue];
     
-    [mosquittoClient publishString:stringData toTopic:@"nmif/server" withQos:2 retain:NO];
+    [mosquittoClient publishString:stringData toTopic:@"nmif/server" withMsgId:&mId withQos:1 retain:NO];
 }
 #pragma mark - commands sent to server
 -(void) startNotifications
@@ -336,7 +337,7 @@ static GMHelper * sharedHelper = 0;
 //    [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@$", K_NOTIFICATION_ON, sessionID]];
     NSString *topic = [NSString stringWithFormat:@"nmif/%@", sessionID];
     NSLog(@"Subscribing to %@", topic);
-    [mosquittoClient subscribe:topic withQos:2];
+    [mosquittoClient subscribe:topic withQos:1];
 }
 
 -(void) invite:(NSString*)friend withDelegate:(id <GMHelperDelegate>)GMDelegate
@@ -383,7 +384,7 @@ static GMHelper * sharedHelper = 0;
     } else {
         if ([objects count] > 0) {
             lastCelebrityID = [[objects objectAtIndex:0] valueForKey:@"maxId"];
-        }
+        }	
     }
      
     [self writeToOutputStream:[NSString stringWithFormat:@"%@:%@:%d$", K_GET_CELEBRITY_LIST, sessionID, [lastCelebrityID intValue]]];
@@ -815,7 +816,7 @@ static GMHelper * sharedHelper = 0;
     fCelebrityLoaded = false;
     
     [self getGamesInProgress];
-    [self getAvailablePackages];
+    [self getAvailablePackages];	
     [self getCelebrityList];
     [self getTopCelebrityList];
     [self getMyGamesHistory];

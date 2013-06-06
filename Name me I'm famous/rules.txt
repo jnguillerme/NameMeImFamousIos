@@ -1,0 +1,11 @@
+Règles du jeu
+   
+En début de partie, vous attribuez un nom de célébrité à votre adversaire. Il en fera de même pour vous.
+Chacun à son tour pose les questions de son choix a son adversaire, dans le but de découvrir la célébrité qui lui a été attribuée.
+Les seules réponses possibles sont oui (code couleur vert), non (rouge) et peut-être (orange)
+
+Lorsqu'un joueur pense avoir deviner la célébrité qui lui a été attribuée, il émet une proposition.
+Une mauvaise proposition fait perdre un tour.
+
+Le vainqueur est le premier a découvrir sa célébrité.
+

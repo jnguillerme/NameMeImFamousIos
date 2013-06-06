@@ -60,20 +60,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1131"
-         endingLineNumber = "1131"
-         landmarkName = "-didReceiveMessage:forTopic:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1132"
@@ -86,7 +73,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1133"
@@ -99,11 +86,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1173"
-         endingLineNumber = "1173"
+         startingLineNumber = "1134"
+         endingLineNumber = "1134"
+         landmarkName = "-didReceiveMessage:forTopic:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Name me I&apos;m famous/GMHelper.m"
+         timestampString = "390736350.132454"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1174"
+         endingLineNumber = "1174"
          landmarkName = "-didSubscribe:grantedQos:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -111,25 +111,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Name me I&apos;m famous/MosquittoClient.m"
-         timestampString = "389221196.130741"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "59"
-         endingLineNumber = "59"
-         landmarkName = "on_subscribe()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1174"
-         endingLineNumber = "1174"
+         startingLineNumber = "1175"
+         endingLineNumber = "1175"
          landmarkName = "-didSubscribe:grantedQos:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390147187.785717"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "472"
-         endingLineNumber = "472"
+         startingLineNumber = "473"
+         endingLineNumber = "473"
          landmarkName = "-addGameInProgress:withOpponent:withToken:andCelebrityName:andCelebrityPickedUpByOpponent:andPackages:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "911"
-         endingLineNumber = "911"
+         startingLineNumber = "912"
+         endingLineNumber = "912"
          landmarkName = "-onCommandQuestionAsked:withQuestionID:andQuestion:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390147187.785717"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "467"
-         endingLineNumber = "467"
+         startingLineNumber = "468"
+         endingLineNumber = "468"
          landmarkName = "-addGameInProgress:withOpponent:withToken:andCelebrityName:andCelebrityPickedUpByOpponent:andPackages:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -260,8 +247,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "171"
          endingLineNumber = "171"
-         landmarkName = "-friendPickerViewController:shouldIncludeUser:"
-         landmarkType = "5">
+         landmarkName = "@implementation nmifInviteFriendViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -281,11 +268,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/nmifGameInProgressViewController.m"
-         timestampString = "390149991.589898"
+         timestampString = "390823168.523168"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
+         startingLineNumber = "148"
+         endingLineNumber = "148"
          landmarkName = "-onGamesInProgressLoaded"
          landmarkType = "5">
       </FileBreakpoint>
@@ -294,11 +281,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/nmifGameInProgressViewController.m"
-         timestampString = "390149994.055419"
+         timestampString = "390823168.523168"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "-onGamesInProgressLoaded"
          landmarkType = "5">
       </FileBreakpoint>
@@ -307,11 +294,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/nmifGameInProgressViewController.m"
-         timestampString = "390151212.037459"
+         timestampString = "390823168.523168"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "171"
-         endingLineNumber = "171"
+         startingLineNumber = "173"
+         endingLineNumber = "173"
          landmarkName = "-onCelebrityListEnd"
          landmarkType = "5">
       </FileBreakpoint>
@@ -320,11 +307,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "857"
-         endingLineNumber = "857"
+         startingLineNumber = "858"
+         endingLineNumber = "858"
          landmarkName = "-onCommandCelebrityListEnd"
          landmarkType = "5">
       </FileBreakpoint>
@@ -333,11 +320,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390150417.229937"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "796"
-         endingLineNumber = "796"
+         startingLineNumber = "797"
+         endingLineNumber = "797"
          landmarkName = "-decodeCommand:withParam1:withParam2:withParam3:withParam4:withParam5:withParam6:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -346,11 +333,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390212710.949629"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "814"
-         endingLineNumber = "814"
+         startingLineNumber = "815"
+         endingLineNumber = "815"
          landmarkName = "-onCommandNotificationAck"
          landmarkType = "5">
       </FileBreakpoint>
@@ -359,12 +346,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Name me I&apos;m famous/GMHelper.m"
-         timestampString = "390152127.679563"
+         timestampString = "390736350.132454"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "782"
-         endingLineNumber = "782"
+         startingLineNumber = "783"
+         endingLineNumber = "783"
          landmarkName = "-decodeCommand:withParam1:withParam2:withParam3:withParam4:withParam5:withParam6:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Name me I&apos;m famous/nmifGameInProgressViewController.m"
+         timestampString = "391425202.030587"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
+         landmarkName = "-onNewRandomGameSuccess"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Name me I&apos;m famous/GMHelper.m"
+         timestampString = "391425291.842331"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "845"
+         endingLineNumber = "845"
+         landmarkName = "-onCommandNewGameInProgressEnd"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Name me I&apos;m famous/GMHelper.m"
+         timestampString = "391972123.947316"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "333"
+         endingLineNumber = "333"
+         landmarkName = "-writeToOutputStream:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Name me I&apos;m famous/GMHelper.m"
+         timestampString = "391972124.213561"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "332"
+         endingLineNumber = "332"
+         landmarkName = "-writeToOutputStream:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

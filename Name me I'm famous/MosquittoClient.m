@@ -156,11 +156,11 @@ static void on_unsubscribe(struct mosquitto *mosq, void *obj, int message_id)
 }
 
 
-- (void)publishString: (NSString *)payload toTopic:(NSString *)topic withQos:(NSUInteger)qos retain:(BOOL)retain {
+- (void)publishString: (NSString *)payload toTopic:(NSString *)topic withMsgId:(int*)mId withQos:(NSUInteger)qos retain:(BOOL)retain {
     const char* cstrTopic = [topic cStringUsingEncoding:NSUTF8StringEncoding];
     const uint8_t* cstrPayload = (const uint8_t*)[payload cStringUsingEncoding:NSUTF8StringEncoding];
     size_t cstrlen = [payload lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-    mosquitto_publish(mosq, NULL, cstrTopic, cstrlen, cstrPayload, qos, retain);
+    mosquitto_publish(mosq, mId, cstrTopic, cstrlen, cstrPayload, qos, retain);
     
 }
 

@@ -141,3 +141,5 @@
 "INVITE_RECEIVED" = "%@ vous invite à demarrer une nouvelle partie. Rendez vous sur l'ecran des parties en cours pour jouer.";
 "OPPONENT_CELEBRITY" = "%@ doit trouver %@";
 "ERROR_OCCURED" = "Une erreur est intervenue. La partie va se terminer";
+"RULES" = "Règles du jeu";
+"RULES_DESCRIPTION" = "";

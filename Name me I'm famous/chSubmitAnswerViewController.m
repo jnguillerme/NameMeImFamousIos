@@ -52,6 +52,9 @@ NSString * const K_CELEBRITY_KEY = @"NMIF.SUBMITANSWERVIEWID.CELEBRITY";
     self.tvMenu.dataSource = menuTableView;
     
     [menuTableView addMenuItem:NSLocalizedString(@"SUBMIT_CELEBRITY", nil) withDescription:NSLocalizedString(@"SUBMIT_CELEBRITY_DESCRIPTION", nil) andImage:@"newRandomGame.png" andAction:@selector(onCelebritySubmit) andDelegate:theDelegate];
+
+       [menuTableView addMenuItem:NSLocalizedString(@"SHOW_HISTORY", nil) withDescription:NSLocalizedString(@"SHOW_HISTORY_DESCRIPTION", nil) andImage:@"gameHistory.png" andAction:@selector(onShowQuestionHistory) andDelegate:theDelegate];  ;
+    
     
     [self.tvMenu reloadData];
     
@@ -112,7 +115,9 @@ NSString * const K_CELEBRITY_KEY = @"NMIF.SUBMITANSWERVIEWID.CELEBRITY";
         [[GMHelper sharedInstance] submitCelebrity:self.tfCelebrity.text withDelegate:self];
     }
 }
-
+-(void)onShowQuestionHistory {
+    [self performSegueWithIdentifier:@"questionHistoryFromSubmit" sender:self];
+}
 #pragma GMHelperDelegate
 -(void) onCelebritySubmitted:(NSString*)celebritySubmitted withStatus:(NSString*)status
 {
