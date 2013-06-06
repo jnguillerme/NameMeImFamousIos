@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="11G63" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Celebrity" representedClassName="Celebrity" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="role" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Role" inverseName="celebrities" inverseEntity="Role" syncable="YES"/>
+    </entity>
+    <entity name="Role" representedClassName="Role" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="celebrities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Celebrity" inverseName="role" inverseEntity="Celebrity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Celebrity" positionX="-5168" positionY="-3834" width="128" height="90"/>
+        <element name="Role" positionX="-4925" positionY="-3636" width="128" height="90"/>
+    </elements>
+</model>
