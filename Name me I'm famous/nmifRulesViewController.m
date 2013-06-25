@@ -28,15 +28,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSArray *resFiles = [NSArray arrayWithObjects:@"rules", @"advices", nil];
+    NSArray *resFiles = [NSArray arrayWithObjects:@"rules", @"packages", @"advices", nil];
 
-    for(int i=0; i < 2;i++) {
+    for(int i=0; i < 3;i++) {
         CGRect frame;
         frame.origin.x = self.scrollView.frame.origin.x + self.scrollView.frame.size.width * i;
         frame.origin.y = self.scrollView.frame.origin.y;
         frame.size = self.scrollView.frame.size;
         
         UITextView *subview = [[UITextView alloc] initWithFrame:frame];
+
+        subview.backgroundColor = [UIColor clearColor];
+        subview.font = [UIFont fontWithName:@"Calibri" size:12];
+        subview.textColor = [UIColor whiteColor];
         
         NSError *err= nil;
         NSString *filePath = [[NSBundle mainBundle] pathForResource:[resFiles objectAtIndex:i] ofType:@"txt"];

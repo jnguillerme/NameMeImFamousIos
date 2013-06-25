@@ -35,6 +35,12 @@
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
     
+    CGRect frame = self.adBanner.frame;
+    CGFloat xPosition = frame.origin.x;
+    CGFloat yPosition = self.view.bounds.origin.y + self.view.bounds.size.height - (self.adBanner.bounds.size.height * 1.5);
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.adBanner.frame = frame;
+
     id<nmifMenuTableViewDelegate> theDelegate = (id<nmifMenuTableViewDelegate>)self;
     menuTableView = [[nmifMenuGameOverTableView alloc] initWithDelegate:theDelegate];
     self.tvMenu.delegate = menuTableView;
@@ -59,6 +65,7 @@
 {
     [self setLblGameStatus:nil];
     [self setTvMenu:nil];
+    [self setAdBanner:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

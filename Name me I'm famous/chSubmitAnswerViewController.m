@@ -46,6 +46,19 @@ NSString * const K_CELEBRITY_KEY = @"NMIF.SUBMITANSWERVIEWID.CELEBRITY";
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
     
+    //  opponent status / btn param position
+    CGRect frame = self.btnParam.frame;
+    CGFloat xPosition = self.view.bounds.origin.x + self.view.bounds.size.width - (self.btnParam.bounds.size.width);
+    CGFloat yPosition = self.view.bounds.origin.y + self.view.bounds.size.height - (self.btnParam.bounds.size.height * 1.5);
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.btnParam.frame = frame;
+    
+    frame = self.lblOpponentStatus.frame;
+    xPosition = frame.origin.x;
+    yPosition = self.view.bounds.origin.y + self.view.bounds.size.height - (self.btnParam.bounds.size.height * 1.5) + frame.size.height / 2;
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.lblOpponentStatus.frame = frame;
+    
     id<nmifMenuTableViewDelegate> theDelegate = (id<nmifMenuTableViewDelegate>)self;
     menuTableView = [[nmifMenuSubmitCelebrityTableView alloc] initWithDelegate:theDelegate];
     self.tvMenu.delegate = menuTableView;
@@ -69,6 +82,7 @@ NSString * const K_CELEBRITY_KEY = @"NMIF.SUBMITANSWERVIEWID.CELEBRITY";
 
     [self setLblOpponentStatus:nil];
     [self setTvMenu:nil];
+    [self setBtnParam:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

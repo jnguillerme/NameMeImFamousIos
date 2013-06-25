@@ -256,6 +256,7 @@ static GMHelper * sharedHelper = 0;
   */
     mosquittoClient = [[MosquittoClient alloc] initWithClientId:sessionID andCleanSession:NO];
     [mosquittoClient setDelegate:self];
+    //[mosquittoClient setHost:@"54.247.53.94"];
     [mosquittoClient setHost:@"54.247.53.94"];
     [mosquittoClient setPort:5001];
     [mosquittoClient setWill:[NSString stringWithFormat:@"%@:%@", K_DISCONNECTED, sessionID] toTopic:@"nmif/server" withQos:1 retain:NO];

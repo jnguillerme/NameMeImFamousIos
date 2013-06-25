@@ -21,5 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblOpponentStatus;
 @property (weak, nonatomic) IBOutlet UITableView *tvMenu;
+@property (weak, nonatomic) IBOutlet UIButton *btnParam;
 
 @end

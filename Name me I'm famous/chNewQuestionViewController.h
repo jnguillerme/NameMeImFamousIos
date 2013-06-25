@@ -11,8 +11,9 @@
 #import "nmifQuestion.h"
 #import "nmifMenuAskQuestionTableView.h"
 #import "nmifQuestionAskedHistoryViewController.h"
+#import "iAd/ADBannerView.h"
 
-@interface chNewQuestionViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifMenuAskQuestionTableViewDelegate, nmifQuestionChoiceDelegate> {
+@interface chNewQuestionViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifMenuAskQuestionTableViewDelegate, nmifQuestionChoiceDelegate, ADBannerViewDelegate> {
     nmifMenuAskQuestionTableView *menuTableView;
     NSString *questionAsked;
 }
@@ -30,4 +31,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnParam;
 -(void) setQuestionNumberToNext;
+@property (weak, nonatomic) IBOutlet ADBannerView *addBanner;
 @end

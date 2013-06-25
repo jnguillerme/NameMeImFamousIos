@@ -43,6 +43,25 @@
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
     
+    //  opponent status / btn param position
+    CGRect frame = self.btnParam.frame;
+    CGFloat xPosition = self.view.bounds.origin.x + self.view.bounds.size.width - (self.btnParam.bounds.size.width);
+    CGFloat yPosition = self.view.bounds.origin.y + self.view.bounds.size.height - (self.btnParam.bounds.size.height * 1.5);
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.btnParam.frame = frame;
+    
+    frame = self.lblOpponentStatus.frame;
+    xPosition = frame.origin.x;
+    yPosition = self.view.bounds.origin.y + self.view.bounds.size.height - (self.btnParam.bounds.size.height * 1.5) + frame.size.height / 2;
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.lblOpponentStatus.frame = frame;
+    
+    frame = self.addBanner.frame;
+    xPosition = frame.origin.x;
+    yPosition = self.btnParam.frame.origin.y - self.btnParam.frame.size.height/2 - frame.size.height;
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.addBanner.frame = frame;
+    
     id<nmifMenuTableViewDelegate> theDelegate = (id<nmifMenuTableViewDelegate>)self;
     menuTableView = [[nmifMenuCelebrityChoiceTableView alloc] initWithDelegate:theDelegate];
     self.tvMenu.delegate = menuTableView;
@@ -92,6 +111,7 @@
     [self setLblOpponentStatus:nil];
     [self setTvMenu:nil];
     [self setBtnParam:nil];
+    [self setAddBanner:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -207,5 +227,15 @@
 - (void) restorePrivateData
 {
     
+}
+#pragma ADBannerView delegate
+-(void) bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    
+}
+
+-(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"Baner view error: %@", error.localizedDescription);
 }
 @end

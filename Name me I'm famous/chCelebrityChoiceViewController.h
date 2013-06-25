@@ -10,8 +10,9 @@
 #import "GMHelper.h"
 #import "nmifCelebrityListViewController.h"
 #import "nmifMenuCelebrityChoiceTableView.h"
+#import "iAd/ADBannerView.h"
 
-@interface chCelebrityChoiceViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifCelebrityChoiceDelegate, nmifMenuCelebrityChoiceTableViewDelegate> {
+@interface chCelebrityChoiceViewController : UIViewController<GMHelperDelegate, GMRestoreViewDelegate, nmifCelebrityChoiceDelegate, nmifMenuCelebrityChoiceTableViewDelegate, ADBannerViewDelegate> {
     nmifMenuCelebrityChoiceTableView *menuTableView;
 }
 
@@ -22,5 +23,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tvMenu;
 @property (weak, nonatomic) IBOutlet UIButton *btnParam;
+@property (weak, nonatomic) IBOutlet ADBannerView *addBanner;
 
 @end

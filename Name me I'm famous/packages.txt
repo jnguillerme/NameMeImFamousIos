@@ -1,0 +1,12 @@
+Gestion des catégories
+
+Vous pouvez décider avec quelle catégorie de célébrités vous souhaitez jouer.
+Les catégories disponibles sont BD / film d'animation, cinéma, divers, jeux vidéos, manga, musique et sport.
+
+Au départ, toutes les catégories sont activées. Mais si, par exemple, vous ne souhaitez pas jouer avec des personalités du monde des mangas, il vous suffit de selectionner la catégories "manga" et de balayer vers la gauche. 
+Une croix apparait alors devant la catégorie indiquant qu'elle est désactivée.
+
+Les célébrités que vous choisirez pour votre adversaire et la célebrité que votre adversaire choisira pour vous
+se trouveront forcément parmi les catégories qui sont activées à la fois chez vous et chez votre adversaire.
+
+

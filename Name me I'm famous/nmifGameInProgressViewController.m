@@ -33,6 +33,12 @@
     [self.view.layer insertSublayer:bgLayer atIndex:0];
     
    // self.lblNmifTitle.textColor = [UIColor colorWithRed:0.05f green:0.48f blue:0.58f alpha:1];
+    //  opponent status / btn param position
+    CGRect frame = self.btnParam.frame;
+    CGFloat xPosition = self.view.bounds.origin.x + self.view.bounds.size.width - (self.btnParam.bounds.size.width);
+    CGFloat yPosition = self.view.bounds.origin.y + self.view.bounds.size.height - (self.btnParam.bounds.size.height);
+    frame.origin = CGPointMake(xPosition, yPosition);
+    self.btnParam.frame = frame;
     
     // Menu table view
     menuTableView = [[nmifMenuTableView alloc] initWithDelegate:self];
