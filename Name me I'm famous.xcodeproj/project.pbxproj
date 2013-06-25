@@ -76,6 +76,7 @@
 		4E8A45B7167CCCB20093B234 /* logo 114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8A45B6167CCCB20093B234 /* logo 114x114.png */; };
 		4E8A45B9167CCD080093B234 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8A45B8167CCD080093B234 /* Default@2x.png */; };
 		4E8A45BB167CCD210093B234 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8A45BA167CCD210093B234 /* Default-568h@2x.png */; };
+		4E8AB39A17787BBE002A871F /* packages.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E8AB39917787BBE002A871F /* packages.txt */; };
 		4E8BC4E61676201E0032FF9B /* small-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8BC4E51676201E0032FF9B /* small-logo.png */; };
 		4E8BC4EA16764AEB0032FF9B /* nmifConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8BC4E916764AEA0032FF9B /* nmifConnectionViewController.m */; };
 		4E8DCBC616FF6A8500950F21 /* invite.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E8DCBC516FF6A8500950F21 /* invite.png */; };
@@ -143,6 +144,7 @@
 		4E9973D817612EF900C47C54 /* rules.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E9973D717612EF900C47C54 /* rules.txt */; };
 		4E9973DA1761325B00C47C54 /* advices.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E9973D91761325B00C47C54 /* advices.txt */; };
 		4E9AF71016524B86004773A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9AF70F16524B86004773A1 /* Default.png */; };
+		4E9BCF581779CB10005E238D /* libmosquitto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9BCF561779CAB6005E238D /* libmosquitto.a */; };
 		4E9F331D16DFF6DD000BB15E /* nmifGameInProgressTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F331C16DFF6DD000BB15E /* nmifGameInProgressTableView.m */; };
 		4E9F332016DFFA44000BB15E /* nmifMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F331F16DFFA44000BB15E /* nmifMenuTableView.m */; };
 		4E9F3AE016BFBBEC0030C62D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9F3ADF16BFBBEC0030C62D /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -151,7 +153,6 @@
 		4E9F6F9B16F2170900AC6C9B /* mygameshistory.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9F6F9916F2170900AC6C9B /* mygameshistory.png */; };
 		4E9F6F9C16F2170900AC6C9B /* topcelebrities.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E9F6F9A16F2170900AC6C9B /* topcelebrities.png */; };
 		4E9F6F9F16F23B5100AC6C9B /* nmifTopCelebritiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F6F9E16F23B4C00AC6C9B /* nmifTopCelebritiesViewController.m */; };
-		4EB08C531726D9F500991EAE /* libmosquitto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB08C521726D9F400991EAE /* libmosquitto.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -272,6 +273,7 @@
 		4E8A45B6167CCCB20093B234 /* logo 114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 114x114.png"; path = "../logo 114x114.png"; sourceTree = "<group>"; };
 		4E8A45B8167CCD080093B234 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		4E8A45BA167CCD210093B234 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		4E8AB39917787BBE002A871F /* packages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = packages.txt; sourceTree = "<group>"; };
 		4E8BC4E51676201E0032FF9B /* small-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small-logo.png"; sourceTree = "<group>"; };
 		4E8BC4E816764AEA0032FF9B /* nmifConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifConnectionViewController.h; sourceTree = "<group>"; };
 		4E8BC4E916764AEA0032FF9B /* nmifConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifConnectionViewController.m; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		4E9973D717612EF900C47C54 /* rules.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rules.txt; sourceTree = "<group>"; };
 		4E9973D91761325B00C47C54 /* advices.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = advices.txt; sourceTree = "<group>"; };
 		4E9AF70F16524B86004773A1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		4E9BCF561779CAB6005E238D /* libmosquitto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmosquitto.a; path = "Release-iphoneos/libmosquitto.a"; sourceTree = "<group>"; };
 		4E9F331B16DFF6DC000BB15E /* nmifGameInProgressTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifGameInProgressTableView.h; sourceTree = "<group>"; };
 		4E9F331C16DFF6DD000BB15E /* nmifGameInProgressTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifGameInProgressTableView.m; sourceTree = "<group>"; };
 		4E9F331E16DFFA44000BB15E /* nmifMenuTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifMenuTableView.h; sourceTree = "<group>"; };
@@ -385,7 +388,6 @@
 		4E9F6F9A16F2170900AC6C9B /* topcelebrities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = topcelebrities.png; path = images/topcelebrities.png; sourceTree = "<group>"; };
 		4E9F6F9D16F23B4600AC6C9B /* nmifTopCelebritiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nmifTopCelebritiesViewController.h; sourceTree = "<group>"; };
 		4E9F6F9E16F23B4C00AC6C9B /* nmifTopCelebritiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nmifTopCelebritiesViewController.m; sourceTree = "<group>"; };
-		4EB08C521726D9F400991EAE /* libmosquitto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmosquitto.a; path = "iphone-debug/libmosquitto.a"; sourceTree = "<group>"; };
 		4EDB010516B81D7000C68029 /* Name me I'm famous.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Name me I'm famous.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -394,13 +396,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E9BCF581779CB10005E238D /* libmosquitto.a in Frameworks */,
 				4E9317A417422B6B00BB05A7 /* iAd.framework in Frameworks */,
 				4E45A979173C3A9300638F27 /* FacebookSDK.framework in Frameworks */,
 				4E45A978173C3A6800638F27 /* Social.framework in Frameworks */,
 				4E45A976173C3A5800638F27 /* Security.framework in Frameworks */,
 				4E57877A1677727E007452C0 /* AdSupport.framework in Frameworks */,
 				4E059E101651530400A17E38 /* Accounts.framework in Frameworks */,
-				4EB08C531726D9F500991EAE /* libmosquitto.a in Frameworks */,
 				4E94E4C916E0128700F4F02E /* QuartzCore.framework in Frameworks */,
 				4E9F3AE316BFC20F0030C62D /* CoreData.framework in Frameworks */,
 				4E9F3AE016BFBBEC0030C62D /* libsqlite3.dylib in Frameworks */,
@@ -423,7 +425,7 @@
 				4E9317A317422B6A00BB05A7 /* iAd.framework */,
 				4E45A977173C3A6800638F27 /* Social.framework */,
 				4E45A975173C3A5800638F27 /* Security.framework */,
-				4EB08C521726D9F400991EAE /* libmosquitto.a */,
+				4E9BCF561779CAB6005E238D /* libmosquitto.a */,
 				4E94E4C816E0128700F4F02E /* QuartzCore.framework */,
 				4E059D8B16514B9100A17E38 /* Name me I'm famous */,
 				4E059D8416514B9100A17E38 /* Frameworks */,
@@ -794,6 +796,7 @@
 				4EDB010516B81D7000C68029 /* Name me I'm famous.entitlements */,
 				4E9973D717612EF900C47C54 /* rules.txt */,
 				4E9973D91761325B00C47C54 /* advices.txt */,
+				4E8AB39917787BBE002A871F /* packages.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -903,6 +906,7 @@
 				4E9888FF174B74700067B7C6 /* rules.png in Resources */,
 				4E9973D817612EF900C47C54 /* rules.txt in Resources */,
 				4E9973DA1761325B00C47C54 /* advices.txt in Resources */,
+				4E8AB39A17787BBE002A871F /* packages.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,6 +1095,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Name me I'm famous\"",
 					"\"$(SRCROOT)/iphone-debug\"",
+					"\"$(SRCROOT)/Release-iphoneos\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1118,6 +1123,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Name me I'm famous\"",
 					"\"$(SRCROOT)/iphone-debug\"",
+					"\"$(SRCROOT)/Release-iphoneos\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
